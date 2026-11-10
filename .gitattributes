@@ -1,0 +1,6 @@
+# на ноуте git ставит CRLF, а bash на сервере и в Git Bash с \r ломается
+*.sh text eol=lf
+*.conf text eol=lf
+*.py text eol=lf
+server/gt text eol=lf
+server/vscode/* text eol=lf

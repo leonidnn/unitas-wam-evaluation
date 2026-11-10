@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+.vscode/
+.ipynb_checkpoints/
+
+# результаты с сервера
+results/_inbox/
+
+# веса и данные на HF, не в git
+*.pt
+*.pth
+*.ckpt
+*.npy
+*.npz
+wandb/
+
+# локальные рабочие документы
+/docs/local/
