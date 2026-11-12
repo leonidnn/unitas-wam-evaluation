@@ -356,7 +356,8 @@ def load_and_validate(work):
             warnings.append('History contains repeated source frames; no extra observations were created')
     except (KeyError, TypeError, ValueError, IndexError, OSError) as error:
         errors.append(f'Incomplete or invalid annotation structure: {type(error).__name__}: {error}')
-    warnings.extend(['Depth and calibration are model estimates, not measured RGB-D',
+    warnings.extend([('Depth and calibration are model estimates, not measured RGB-D'
+                     if not errors else 'Unknown depth and calibration were not replaced with fabricated estimates'),
                      'Human joints differ from the trained Panda surface points',
                      'Conditional EEF/opening is an interface approximation',
                      'No independent future visibility, 3D ADE/FDE or physical calibration accuracy'])
@@ -581,8 +582,11 @@ def render(work):
     if provenance and not packed_matches:
         status = 'NOT READY — PACKED FILE IS STALE'
     # Отчёт строю из реально записанного JSON, а не из декоративно сгенерированных картинок.
+    estimate_note = ('Глубина, геометрия и точки руки оценены моделью. Это не измеренный RGB-D и не эталон.'
+                     if not validation['errors'] else
+                     'Полигоны размечены по RGB; неизвестные 3D-величины оставлены без численных оценок. Это не измеренный RGB-D и не эталон.')
     lines = ['# Подготовка собственной сцены прямым анализом модели', '', f'**Статус: {status}**', '',
-             '> Глубина, геометрия и точки руки оценены моделью. Это не измеренный RGB-D и не эталон.', '',
+             '> '+estimate_note, '',
              '## Разрешённые исходные данные', '',
              f'Видео: `{clean_text(manifest["source"]["name"])}`, {width}×{height}; длительность {manifest["source"]["duration_s"]:.3f} с.',
              f'Граница прогноза: **{manifest["cutoff_s"]:.3f} с**; вход — предшествующая секунда. История: 21 целевое состояние при 20 Гц.',
@@ -593,23 +597,30 @@ def render(work):
              'Следующая секунда сохранена отдельно и не использовалась для разметки. Содержание отложенного фрагмента здесь не показывается.', '',
              '## Текущий кадр и разметка', '',
              '![Исходный текущий кадр](figures/current.png)', '',
-             '![Полигоны объектов и анатомические точки руки](figures/annotations.png)', '',
-             'Жёлтые точки — видимые по оценке разметчика, розовые — предположенные. Даже у видимых точек глубина оценена.', '',
+             '![Полигоны объектов и доступные анатомические точки руки](figures/annotations.png)', '',
+             ('Жёлтые точки — видимые по оценке разметчика, розовые — предположенные. Даже у видимых точек глубина оценена.'
+              if any(p.get('uv') is not None for state in states for p in state.get('landmarks', [])) else
+              'Анатомические точки отсутствуют: их 2D-позиции и глубины не установлены.'), '',
              '| Объект | Статус | Перекрытия |', '|---|---|---|']
     lines += [f'| {clean_text(obj.get("id"))}: {clean_text(obj.get("label", ""))} | {clean_text(obj.get("status"))} | {clean_text(obj.get("occlusion_notes", ""))} |' for obj in objects]
     lines += ['', 'Маска [object-polygons.png](figures/object-polygons.png) растеризует заданные моделью полигоны; при перекрытии последний полигон записывается поверх предыдущего. Это не независимая пиксельная сегментация.', '',
-              '## Оценённая глубина', '']
+              ('## Оценённая глубина' if any(v is not None for row in annotation.get('depth', {}).get('values_m', []) for v in row) else '## Глубина: неизвестные области'), '']
     if depth_ready:
         lines += ['![Карта camera-z и неизвестные области](figures/depth.png)', '']
     else:
         lines += ['Карта глубины отсутствует или имеет некорректную форму.', '']
-    lines += ['Сетка 64×36; увеличение до 224×224 при упаковке не добавляет измерений или деталей.', '',
-              '## История руки', '', '![Прошлые пути размеченных точек](figures/hand-history.png)', '',
-              'Во вход передаются 20 точек пальцев; запястье сохранено отдельно. Человеческая рука отличается от поверхности обучающего захвата Panda. Условная EEF-поза и одно раскрытие не описывают все суставы пальцев.', '',
+    lines += [('Сетка 64×36; увеличение до 224×224 при упаковке не добавляет измерений или деталей.'
+               if not validation['errors'] else
+               'Ячейки сетки 64×36 без обоснованной метрической оценки оставлены неизвестными; упаковка не выполнялась.'), '',
+              '## История руки', '', '![Обзор доступных путей точек руки](figures/hand-history.png)', '',
+              ('Во вход передаются 20 точек пальцев; запястье сохранено отдельно. Человеческая рука отличается от поверхности обучающего захвата Panda. Условная EEF-поза и одно раскрытие не описывают все суставы пальцев.'
+               if not validation['errors'] else
+               'Численные точки руки и EEF во вход не переданы. Человеческая рука отличается от поверхности обучающего захвата Panda.'), '',
               '## Что измерено и что предположено', '', '| Величина | Источник |', '|---|---|',
               f'| Высота кружки: {manifest["cup_height_m"]*100:g} см | Измерение пользователя |',
               '| RGB и временные метки | Исходное видео |',
-              '| Глубина, K, стол, точки руки, EEF | Оценки модели |',
+              ('| Глубина, K, стол, точки руки, EEF | Оценки модели |' if not validation['errors'] else
+               '| Глубина, K, метрическая поза стола, точки руки, EEF | Не установлены в этой попытке |'),
               '| Дисторсия отсутствует, камера неподвижна | Допущение / визуальная оценка; не инструментальная калибровка |', '',
               f'Команда: `{clean_text(annotation.get("instruction", ""))}`.', '', '### Допущения', '']
     lines += ['- '+clean_text(value) for value in annotation.get('assumptions', [])]
