@@ -82,3 +82,11 @@ SIM=/content/miniforge/envs/libero/bin/python
 ```bash
 "$SIM" /content/stage3_policy/plot_results.py --summary /content/UNITAS/outputs/stage3/summary.json --output /content/UNITAS/outputs/stage3/metrics.png
 ```
+
+## Scratch-checkpoint
+
+`stage3_scratch.ipynb` сделан на основе пяти ячеек `stage3.ipynb`: закреплены ревизии исходников и весов, выбран scratch-checkpoint, последняя ячейка вызывает две серии по десять эпизодов. Исходный notebook сохранён. `run_evaluation.py --checkpoint checkpoints/unitas_libero_scratch.pt` выбирает веса; без аргумента используются прежние finetuned-веса.
+
+У опубликованного scratch-checkpoint горизонт прогноза и истории равен 30 шагам при 20 Hz; у ранее использованного finetuned — 20. Сравниваются штатные конфигурации: временное представление поддерживает разные длины траекторий, а принудительная замена горизонта изменила бы настройки выпущенных весов. В обоих случаях исполняются первые 10 действий, затем обновляется наблюдение. Четвёртая ячейка проверяет родную scratch-конфигурацию 30/30. Это сравнение готовых policies; эффект предобучения отдельно от горизонта и объёма истории не изолирован.
+
+`compare_checkpoints.py --finetuned outputs/stage3 --scratch outputs/stage3/scratch --native-temporal-config --output outputs/stage3/scratch/comparison.json` проверяет четыре серии, полноту и совпадение начальных состояний/settle перед сравнением SR, шагов и времени. Аргумент разрешает только указанное различие временных настроек 20/30; остальные отличия протокола отклоняются. Без аргумента требуется совпадение временных настроек. При недостающих эпизодах SR соответствующей серии остаётся неопределённым. Время относится ко всему синхронизированному `Policy.act`; сравнение разных сеансов описательное.

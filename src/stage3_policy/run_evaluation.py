@@ -30,6 +30,7 @@ def main():
     parser.add_argument('--model-python', default='/content/miniforge/envs/unitas/bin/python')
     parser.add_argument('--sim-python', default='/content/miniforge/envs/libero/bin/python')
     parser.add_argument('--condition', choices=['baseline', 'dim_light'], required=True)
+    parser.add_argument('--checkpoint', default='checkpoints/unitas_libero_finetuned.pt')
     parser.add_argument('--episodes', type=int, default=10)
     parser.add_argument('--episode-start', type=int, default=0)
     parser.add_argument('--output-dir', type=Path, required=True)
@@ -57,7 +58,7 @@ def main():
     # Беру последнюю строку: LIBERO печатает предупреждение о datasets перед номером задачи.
     task_id = int(task_output.strip().splitlines()[-1])
     server_command = [args.model_python, '-u', str(scripts / 'serve_timed.py'), '--domain', 'libero',
-                      '--checkpoint', 'checkpoints/unitas_libero_finetuned.pt',
+                      '--checkpoint', args.checkpoint,
                       '--florence-dir', 'checkpoints/Florence-2-large', '--device', 'cuda',
                       '--steps', '10', '--execute-steps', '10', '--seed', '160484', '--port', '8000']
     client_command = [args.sim_python, '-u', str(scripts / 'record_libero.py'), '--suite', 'libero_90',
