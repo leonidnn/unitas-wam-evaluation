@@ -1,0 +1,84 @@
+{
+  "source_sha256": "71d30b35f60aac4306fb6566a996045c8728dd6d099654e1dd59bc17bfab6dd6",
+  "previews": [
+    {
+      "requested_s": 0.0,
+      "actual_s": 0.0,
+      "path": "preview-000/frame-001.png",
+      "sha256": "84a3e15bdf2bc4270412a416cfdf26bb1054ce16422aa52b7e20084bb6224eb2"
+    },
+    {
+      "requested_s": 0.5,
+      "actual_s": 0.4643,
+      "path": "preview-001/frame-001.png",
+      "sha256": "a779329fe3b8e04e32dee025fe2bf81e1f000b23929f605eb968d6974b73a5ed"
+    },
+    {
+      "requested_s": 1.0,
+      "actual_s": 0.975933,
+      "path": "preview-002/frame-001.png",
+      "sha256": "86f2b86fb2debb27303714bc8b91abaaca4db9806b68d4850cc9146b82a173ae"
+    },
+    {
+      "requested_s": 1.5,
+      "actual_s": 1.472,
+      "path": "preview-003/frame-001.png",
+      "sha256": "b12598aecd5bb5ff6cefa616e9a1cfdb676aeedb36f8cc3969df8675a7dc0d87"
+    },
+    {
+      "requested_s": 2.0,
+      "actual_s": 1.983967,
+      "path": "preview-004/frame-001.png",
+      "sha256": "da06e4c68ecb57c0dcf89bef5b23a47a2a3fd59aeac2a8d79fcf8198c3a15110"
+    },
+    {
+      "requested_s": 2.5,
+      "actual_s": 2.4801,
+      "path": "preview-005/frame-001.png",
+      "sha256": "4d02d07609f7d2888597ce8f5a3ecfbc682f9ad62ad99bbb360d042d8e839992"
+    },
+    {
+      "requested_s": 3.0,
+      "actual_s": 2.992067,
+      "path": "preview-006/frame-001.png",
+      "sha256": "aaa49ab4cab1f82bb1e516c3eb02d1ce8376d66c5a8bda32494efe163c07cc00"
+    },
+    {
+      "requested_s": 3.5,
+      "actual_s": 3.488133,
+      "path": "preview-007/frame-001.png",
+      "sha256": "b0a69bafca3a0ea1fc6b71c759b22638f3fe0ec3033ed9c4c338d6db30ac98a6"
+    },
+    {
+      "requested_s": 4.0,
+      "actual_s": 3.968167,
+      "path": "preview-008/frame-001.png",
+      "sha256": "24fcab4de0557fe3868966397305dc1f5e0b46bbc8c9c65589078f9b9dadc12a"
+    },
+    {
+      "requested_s": 4.5,
+      "actual_s": 4.496067,
+      "path": "preview-009/frame-001.png",
+      "sha256": "26de9083ceb7b071ae16a7b426cbaa250c1dffc5dfa9c888976dc9cf3df86099"
+    },
+    {
+      "requested_s": 5.0,
+      "actual_s": 4.976033,
+      "path": "preview-010/frame-001.png",
+      "sha256": "f8de005ec86900eb9d4c22fddadcbfa663c9487d9b743464a21635d00902e4c1"
+    },
+    {
+      "requested_s": 5.5,
+      "actual_s": 5.4722,
+      "path": "preview-011/frame-001.png",
+      "sha256": "dde1b2d29c779c7e5c22a0ef6fa63f747efa9cbe124c7c55b5b61860c0b35fa7"
+    },
+    {
+      "requested_s": 6.0,
+      "actual_s": 5.9841,
+      "path": "preview-012/frame-001.png",
+      "sha256": "ae36bb5f5c9638c9f5de5e329f98eab6933d46d0c66855e6cbda76d69af708e1"
+    }
+  ],
+  "exposed_until_s": 6.0
+}

@@ -1,0 +1,215 @@
+{
+  "version": "llm-media-v1",
+  "source": {
+    "name": "WIN_20261112_10_59_15_Pro.mp4",
+    "sha256": "71d30b35f60aac4306fb6566a996045c8728dd6d099654e1dd59bc17bfab6dd6",
+    "duration_s": 15.68,
+    "width": 1920,
+    "height": 1080,
+    "reported_fps": 29.58
+  },
+  "cutoff_s": 6.0,
+  "max_preview_s": 6.0,
+  "cup_height_m": 0.11,
+  "height_source": "user_measured",
+  "history": [
+    {
+      "sample": 0,
+      "target_s": 5.0,
+      "actual_s": 4.976033,
+      "source_frame_index": 148,
+      "path": "frames/frame-001.png",
+      "sha256": "f8de005ec86900eb9d4c22fddadcbfa663c9487d9b743464a21635d00902e4c1",
+      "repeated": false
+    },
+    {
+      "sample": 1,
+      "target_s": 5.05,
+      "actual_s": 5.0402,
+      "source_frame_index": 150,
+      "path": "frames/frame-002.png",
+      "sha256": "c24a1a0671ac585b62f10f677e5af95ed09750dc51c29ec9f89210661ad88a5d",
+      "repeated": false
+    },
+    {
+      "sample": 2,
+      "target_s": 5.1,
+      "actual_s": 5.0721,
+      "source_frame_index": 151,
+      "path": "frames/frame-003.png",
+      "sha256": "7eda46502eaec93284770c4e238c0d2dcad61d676db6cadd82ad50f429cf100f",
+      "repeated": false
+    },
+    {
+      "sample": 3,
+      "target_s": 5.15,
+      "actual_s": 5.136167,
+      "source_frame_index": 153,
+      "path": "frames/frame-004.png",
+      "sha256": "4e568db7ed612ef7bd3720f40d23421df0e17d8ab68414e2fdea1ec6b01e60cf",
+      "repeated": false
+    },
+    {
+      "sample": 4,
+      "target_s": 5.2,
+      "actual_s": 5.168167,
+      "source_frame_index": 154,
+      "path": "frames/frame-005.png",
+      "sha256": "f09795d45d483a24e5a877e3366e5304e814675fb71153d1fa0b4eead1cf7055",
+      "repeated": false
+    },
+    {
+      "sample": 5,
+      "target_s": 5.25,
+      "actual_s": 5.248767,
+      "source_frame_index": 156,
+      "path": "frames/frame-006.png",
+      "sha256": "b660dabf5cd25da667fe3fd72bbb67ad90327a8d8919b983f71b576b00ac78c3",
+      "repeated": false
+    },
+    {
+      "sample": 6,
+      "target_s": 5.3,
+      "actual_s": 5.280133,
+      "source_frame_index": 157,
+      "path": "frames/frame-007.png",
+      "sha256": "406899b5b358ac868a49a2beeeb5d6e8e2ac36dd643a4b71f2c946a07e5a7e45",
+      "repeated": false
+    },
+    {
+      "sample": 7,
+      "target_s": 5.35,
+      "actual_s": 5.344133,
+      "source_frame_index": 159,
+      "path": "frames/frame-008.png",
+      "sha256": "b1fda3cc8fbac2f2fcbc5d1f98c165f5b837ce616bb345720064c2a4ce2c8077",
+      "repeated": false
+    },
+    {
+      "sample": 8,
+      "target_s": 5.4,
+      "actual_s": 5.376167,
+      "source_frame_index": 160,
+      "path": "frames/frame-009.png",
+      "sha256": "4fb9310e7d57f86e6ba2a168767a5919c5921d2de7534fbcb0be7db77333e2cf",
+      "repeated": false
+    },
+    {
+      "sample": 9,
+      "target_s": 5.45,
+      "actual_s": 5.440233,
+      "source_frame_index": 162,
+      "path": "frames/frame-010.png",
+      "sha256": "9c9ad580ac0a97433a263d985c34f8fefffcfb08061cdb9eb310b631709fde01",
+      "repeated": false
+    },
+    {
+      "sample": 10,
+      "target_s": 5.5,
+      "actual_s": 5.4722,
+      "source_frame_index": 163,
+      "path": "frames/frame-011.png",
+      "sha256": "dde1b2d29c779c7e5c22a0ef6fa63f747efa9cbe124c7c55b5b61860c0b35fa7",
+      "repeated": false
+    },
+    {
+      "sample": 11,
+      "target_s": 5.55,
+      "actual_s": 5.504167,
+      "source_frame_index": 164,
+      "path": "frames/frame-012.png",
+      "sha256": "02ce19f04c2b52d480a58019ae121be3824e83f8f49d8bd84a99bac5b235ebe4",
+      "repeated": false
+    },
+    {
+      "sample": 12,
+      "target_s": 5.6,
+      "actual_s": 5.584133,
+      "source_frame_index": 166,
+      "path": "frames/frame-013.png",
+      "sha256": "1547f61799c488f2f7affa0f3aef189b565c01efcf88acafe744f4f6e91b5ca6",
+      "repeated": false
+    },
+    {
+      "sample": 13,
+      "target_s": 5.65,
+      "actual_s": 5.648133,
+      "source_frame_index": 168,
+      "path": "frames/frame-014.png",
+      "sha256": "e9c2f70116e09ce66bef905315dc6cea7ad3acc539eaf2b34287536d646f4f7b",
+      "repeated": false
+    },
+    {
+      "sample": 14,
+      "target_s": 5.7,
+      "actual_s": 5.680167,
+      "source_frame_index": 169,
+      "path": "frames/frame-015.png",
+      "sha256": "e053863c7b0c839a598fe4cc6d7bd4438ae7d49d96cbfef53075b641cabd306f",
+      "repeated": false
+    },
+    {
+      "sample": 15,
+      "target_s": 5.75,
+      "actual_s": 5.744067,
+      "source_frame_index": 171,
+      "path": "frames/frame-016.png",
+      "sha256": "881cf45557b3f55acc344e52a4c37bc231649b5a48665143384833580a524ca9",
+      "repeated": false
+    },
+    {
+      "sample": 16,
+      "target_s": 5.8,
+      "actual_s": 5.776167,
+      "source_frame_index": 172,
+      "path": "frames/frame-017.png",
+      "sha256": "2bf6d251bf94a6a9c242ba8ffc635853b549631b14d219382b1dece615cb656c",
+      "repeated": false
+    },
+    {
+      "sample": 17,
+      "target_s": 5.85,
+      "actual_s": 5.8402,
+      "source_frame_index": 174,
+      "path": "frames/frame-018.png",
+      "sha256": "2d4b021718fad3147d41b70ca44b1d034007bdc1734a704432188b89d98bd67d",
+      "repeated": false
+    },
+    {
+      "sample": 18,
+      "target_s": 5.9,
+      "actual_s": 5.8881,
+      "source_frame_index": 175,
+      "path": "frames/frame-019.png",
+      "sha256": "bc336f25f8a47bf407834dced1eaa6e729de4776a9991f01a3bb2d29afa91d51",
+      "repeated": false
+    },
+    {
+      "sample": 19,
+      "target_s": 5.95,
+      "actual_s": 5.920067,
+      "source_frame_index": 176,
+      "path": "frames/frame-020.png",
+      "sha256": "1188258cebe744d1c4a59e9f3bd19f36f8c6f07b18344a23c27cce21c7555751",
+      "repeated": false
+    },
+    {
+      "sample": 20,
+      "target_s": 6.0,
+      "actual_s": 5.9841,
+      "source_frame_index": 178,
+      "path": "frames/frame-021.png",
+      "sha256": "ae36bb5f5c9638c9f5de5e329f98eab6933d46d0c66855e6cbda76d69af708e1",
+      "repeated": false
+    }
+  ],
+  "input_video": "input.mp4",
+  "heldout": {
+    "path": "heldout/future.mp4",
+    "start_exclusive_s": 6.0,
+    "end_s": 7.0,
+    "do_not_open_during_preparation": true
+  },
+  "source_audio_used": false,
+  "source_metadata_copied": false
+}

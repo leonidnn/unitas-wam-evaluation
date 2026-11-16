@@ -1,0 +1,20 @@
+{
+  "attempt": "cup-002",
+  "parent_attempt": "cup-001",
+  "parent_annotations_sha256": "ca18b87976bd2943e75515a5fe564ec937a7ddd9ec1e66cde10b2600982faa88",
+  "parent_input_sha256": "31f3427bcad0f4a1b5142805740e2ae64d8a6e83fa6a4dc9f72fa06e60efe171",
+  "manifest_sha256": "21b0b588bf6a983bed2c0595e9bc0427a42c11227be5c70dd79e27c2f3ab0df9",
+  "history_source": "copied 21 frame PNGs and input.mp4 from cup-001 without opening heldout or the full source video",
+  "cutoff_s": 6.0,
+  "future_inspected": false,
+  "comparison": {
+    "coarse_depth_known_cup001": 48,
+    "coarse_depth_known_cup002": 1477,
+    "coarse_depth_total": 2304,
+    "hand_landmarks_known_cup001": 31,
+    "hand_landmarks_known_cup002": 441,
+    "hand_landmarks_visible_cup002": 23,
+    "hand_landmarks_inferred_cup002": 418
+  },
+  "limitations": "Inferred coverage is not independent evidence of accuracy."
+}

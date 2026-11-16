@@ -1,0 +1,221 @@
+{
+  "annotation_sha256": "ca18b87976bd2943e75515a5fe564ec937a7ddd9ec1e66cde10b2600982faa88",
+  "manifest_sha256": "21b0b588bf6a983bed2c0595e9bc0427a42c11227be5c70dd79e27c2f3ab0df9",
+  "input_sha256": "31f3427bcad0f4a1b5142805740e2ae64d8a6e83fa6a4dc9f72fa06e60efe171",
+  "helper_sha256": "f60bf940c33cf8ce913f56ef971e7aa9f30f9f87fc5ef0381714a308759e662b",
+  "depth_is_estimated": true,
+  "domain_is_container_compatibility_only": true,
+  "human_landmark_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "height_m": 0.11,
+  "model_to_camera": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      -0.103
+    ],
+    [
+      0.0,
+      -0.31021722811615104,
+      -0.9506656990656241,
+      0.04
+    ],
+    [
+      0.0,
+      0.9506656990656241,
+      -0.31021722811615104,
+      0.507
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "camera_to_model": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.103
+    ],
+    [
+      0.0,
+      -0.31021722811615104,
+      0.9506656990656241,
+      -0.4695788203016254
+    ],
+    [
+      -0.0,
+      -0.9506656990656241,
+      -0.31021722811615104,
+      0.19530676261751356
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "max_landmark_reprojection_error_px": 2.2737367544323206e-13,
+  "history_timestamps": [
+    {
+      "sample": 0,
+      "target_s": 5.0,
+      "actual_s": 4.976033,
+      "repeated": false
+    },
+    {
+      "sample": 1,
+      "target_s": 5.05,
+      "actual_s": 5.0402,
+      "repeated": false
+    },
+    {
+      "sample": 2,
+      "target_s": 5.1,
+      "actual_s": 5.0721,
+      "repeated": false
+    },
+    {
+      "sample": 3,
+      "target_s": 5.15,
+      "actual_s": 5.136167,
+      "repeated": false
+    },
+    {
+      "sample": 4,
+      "target_s": 5.2,
+      "actual_s": 5.168167,
+      "repeated": false
+    },
+    {
+      "sample": 5,
+      "target_s": 5.25,
+      "actual_s": 5.248767,
+      "repeated": false
+    },
+    {
+      "sample": 6,
+      "target_s": 5.3,
+      "actual_s": 5.280133,
+      "repeated": false
+    },
+    {
+      "sample": 7,
+      "target_s": 5.35,
+      "actual_s": 5.344133,
+      "repeated": false
+    },
+    {
+      "sample": 8,
+      "target_s": 5.4,
+      "actual_s": 5.376167,
+      "repeated": false
+    },
+    {
+      "sample": 9,
+      "target_s": 5.45,
+      "actual_s": 5.440233,
+      "repeated": false
+    },
+    {
+      "sample": 10,
+      "target_s": 5.5,
+      "actual_s": 5.4722,
+      "repeated": false
+    },
+    {
+      "sample": 11,
+      "target_s": 5.55,
+      "actual_s": 5.504167,
+      "repeated": false
+    },
+    {
+      "sample": 12,
+      "target_s": 5.6,
+      "actual_s": 5.584133,
+      "repeated": false
+    },
+    {
+      "sample": 13,
+      "target_s": 5.65,
+      "actual_s": 5.648133,
+      "repeated": false
+    },
+    {
+      "sample": 14,
+      "target_s": 5.7,
+      "actual_s": 5.680167,
+      "repeated": false
+    },
+    {
+      "sample": 15,
+      "target_s": 5.75,
+      "actual_s": 5.744067,
+      "repeated": false
+    },
+    {
+      "sample": 16,
+      "target_s": 5.8,
+      "actual_s": 5.776167,
+      "repeated": false
+    },
+    {
+      "sample": 17,
+      "target_s": 5.85,
+      "actual_s": 5.8402,
+      "repeated": false
+    },
+    {
+      "sample": 18,
+      "target_s": 5.9,
+      "actual_s": 5.8881,
+      "repeated": false
+    },
+    {
+      "sample": 19,
+      "target_s": 5.95,
+      "actual_s": 5.920067,
+      "repeated": false
+    },
+    {
+      "sample": 20,
+      "target_s": 6.0,
+      "actual_s": 5.9841,
+      "repeated": false
+    }
+  ],
+  "depth_known_fraction": 0.020946269132653062,
+  "query_points": 1051,
+  "warnings": [
+    "Depth and calibration are model estimates, not measured RGB-D",
+    "Human joints differ from the trained Panda surface points",
+    "Conditional EEF/opening is an interface approximation",
+    "No independent future visibility, 3D ADE/FDE or physical calibration accuracy"
+  ],
+  "inference_executed": false
+}

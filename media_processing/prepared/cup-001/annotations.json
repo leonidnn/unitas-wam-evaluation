@@ -1,0 +1,5833 @@
+{
+  "version": "llm-scene-v1",
+  "manifest_sha256": "21b0b588bf6a983bed2c0595e9bc0427a42c11227be5c70dd79e27c2f3ab0df9",
+  "analysis_method": "direct_visual_reasoning",
+  "external_vision_models": [],
+  "instruction": "Move the mug.",
+  "scale": {
+    "object_id": "mug",
+    "height_m": 0.11,
+    "source": "user_measured",
+    "notes": "Высота кружки измерена пользователем; остальные размеры оценены по изображению."
+  },
+  "camera": {
+    "intrinsic": [
+      [
+        1280.0,
+        0.0,
+        960.0
+      ],
+      [
+        0.0,
+        1280.0,
+        540.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "status": "estimated",
+    "distortion_assumption": "zero",
+    "notes": "Приближённое фокусное расстояние около 1280 px выбрано по видимой перспективе; калибровки и EXIF нет. Погрешность может быть большой."
+  },
+  "camera_stationary": "yes",
+  "table": {
+    "origin_camera_m": [
+      -0.103,
+      0.04,
+      0.507
+    ],
+    "up_normal_camera": [
+      0.0,
+      -0.95,
+      -0.31
+    ],
+    "status": "estimated",
+    "notes": "Начало примерно под основанием кружки; нормаль оценена по перспективе поверхности стола. Это не измеренная плоскость."
+  },
+  "depth": {
+    "width": 64,
+    "height": 36,
+    "kind": "camera_z",
+    "units": "m",
+    "status": "estimated",
+    "values_m": [
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.486,
+        null,
+        0.483,
+        null,
+        0.48,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.68,
+        null,
+        null,
+        null,
+        0.69,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.484,
+        null,
+        0.48,
+        null,
+        0.478,
+        null,
+        0.472,
+        null,
+        0.469,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.66,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.486,
+        null,
+        0.482,
+        null,
+        0.479,
+        null,
+        null,
+        null,
+        0.474,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.49,
+        null,
+        0.485,
+        null,
+        0.481,
+        null,
+        null,
+        0.478,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.492,
+        null,
+        0.488,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.45,
+        null,
+        null,
+        0.44,
+        null,
+        null,
+        0.43,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.47,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.496,
+        null,
+        0.492,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.455,
+        null,
+        null,
+        null,
+        0.445,
+        null,
+        null,
+        null,
+        null,
+        0.435,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.71,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.498,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.46,
+        null,
+        null,
+        null,
+        0.45,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.45,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.501,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.46,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.504,
+        null,
+        0.5,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.65,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.508,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.6,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.48,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.45,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.42,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.39,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.36,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.34,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ]
+  },
+  "objects": [
+    {
+      "id": "table",
+      "label": "столешница",
+      "polygon_uv": [
+        [
+          0.0,
+          0.74074
+        ],
+        [
+          0.28646,
+          0.5
+        ],
+        [
+          0.54167,
+          0.33796
+        ],
+        [
+          1.0,
+          0.38889
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "status": "visible",
+      "occlusion_notes": "Кружка, рука и предметы перекрывают видимую столешницу; скрытая поверхность не размечена."
+    },
+    {
+      "id": "headphones",
+      "label": "наушники",
+      "polygon_uv": [
+        [
+          0.54688,
+          0.28704
+        ],
+        [
+          0.66667,
+          0.27407
+        ],
+        [
+          0.71354,
+          0.2963
+        ],
+        [
+          0.70833,
+          0.39815
+        ],
+        [
+          0.625,
+          0.40278
+        ],
+        [
+          0.54948,
+          0.37037
+        ]
+      ],
+      "status": "visible",
+      "occlusion_notes": "Частично перекрыты предплечьем."
+    },
+    {
+      "id": "mug",
+      "label": "зелёная кружка с ручкой",
+      "polygon_uv": [
+        [
+          0.30104,
+          0.34815
+        ],
+        [
+          0.32031,
+          0.3287
+        ],
+        [
+          0.3974,
+          0.325
+        ],
+        [
+          0.41406,
+          0.35185
+        ],
+        [
+          0.44479,
+          0.36111
+        ],
+        [
+          0.45573,
+          0.38889
+        ],
+        [
+          0.4474,
+          0.44074
+        ],
+        [
+          0.41667,
+          0.51481
+        ],
+        [
+          0.40469,
+          0.58148
+        ],
+        [
+          0.38021,
+          0.60093
+        ],
+        [
+          0.34896,
+          0.6
+        ],
+        [
+          0.32552,
+          0.53704
+        ],
+        [
+          0.31042,
+          0.45
+        ]
+      ],
+      "status": "visible",
+      "occlusion_notes": "Правая сторона кружки и ручка частично перекрыты пальцами; невидимую поверхность не достраивал."
+    },
+    {
+      "id": "hand",
+      "label": "правая рука и предплечье",
+      "polygon_uv": [
+        [
+          0.35521,
+          0.43519
+        ],
+        [
+          0.37708,
+          0.41759
+        ],
+        [
+          0.39896,
+          0.41296
+        ],
+        [
+          0.41094,
+          0.32593
+        ],
+        [
+          0.42344,
+          0.31204
+        ],
+        [
+          0.45208,
+          0.32315
+        ],
+        [
+          0.48229,
+          0.37222
+        ],
+        [
+          0.52604,
+          0.38796
+        ],
+        [
+          0.67708,
+          0.34352
+        ],
+        [
+          0.79688,
+          0.25463
+        ],
+        [
+          1.0,
+          0.18519
+        ],
+        [
+          1.0,
+          0.51389
+        ],
+        [
+          0.82812,
+          0.54074
+        ],
+        [
+          0.64583,
+          0.54074
+        ],
+        [
+          0.52604,
+          0.5
+        ],
+        [
+          0.45521,
+          0.47963
+        ],
+        [
+          0.3776,
+          0.48611
+        ]
+      ],
+      "status": "visible",
+      "occlusion_notes": "Пальцы закрывают часть кружки; предплечье перекрывает наушники и столешницу."
+    }
+  ],
+  "history": [
+    {
+      "sample": 0,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.61224,
+            0.309722
+          ],
+          "z_m": 0.61,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          0.12867,
+          -0.05719,
+          0.61
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.8
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 1,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.604427,
+            0.310648
+          ],
+          "z_m": 0.6,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          0.11719,
+          -0.05672,
+          0.6
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.79
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 2,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.592448,
+            0.3125
+          ],
+          "z_m": 0.59,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          0.10509,
+          -0.05623,
+          0.59
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.78
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 3,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.583594,
+            0.310648
+          ],
+          "z_m": 0.58,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          0.09062,
+          -0.05573,
+          0.58
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.77
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 4,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.570052,
+            0.308796
+          ],
+          "z_m": 0.57,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          0.07971,
+          -0.05566,
+          0.57
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.75
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 5,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.557552,
+            0.309722
+          ],
+          "z_m": 0.56,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          0.06738,
+          -0.05513,
+          0.56
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.73
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 6,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.545052,
+            0.310648
+          ],
+          "z_m": 0.55,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          0.05586,
+          -0.05457,
+          0.55
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.71
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 7,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.53151,
+            0.310648
+          ],
+          "z_m": 0.54,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          0.04388,
+          -0.054,
+          0.54
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.69
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 8,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.520052,
+            0.308796
+          ],
+          "z_m": 0.53,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          0.03313,
+          -0.05383,
+          0.53
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.67
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 9,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.50599,
+            0.30787
+          ],
+          "z_m": 0.52,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          0.02112,
+          -0.05322,
+          0.52
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.65
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 10,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.491927,
+            0.30787
+          ],
+          "z_m": 0.51,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          0.00956,
+          -0.05259,
+          0.51
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.63
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 11,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.478906,
+            0.30787
+          ],
+          "z_m": 0.5,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          -0.00039,
+          -0.05195,
+          0.5
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.61
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 12,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": [
+            0.46224,
+            0.458796
+          ],
+          "z_m": 0.48,
+          "status": "inferred"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.465365,
+            0.308796
+          ],
+          "z_m": 0.49,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          -0.01187,
+          -0.05053,
+          0.49
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.58
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 13,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": [
+            0.446094,
+            0.456944
+          ],
+          "z_m": 0.47,
+          "status": "inferred"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.452344,
+            0.310648
+          ],
+          "z_m": 0.48,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          -0.0225,
+          -0.048,
+          0.48
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.54
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 14,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": [
+            0.432031,
+            0.454167
+          ],
+          "z_m": 0.46,
+          "status": "inferred"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.440365,
+            0.3125
+          ],
+          "z_m": 0.47,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          -0.03195,
+          -0.0448,
+          0.47
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.5
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 15,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": [
+            0.416406,
+            0.452315
+          ],
+          "z_m": 0.455,
+          "status": "inferred"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.427865,
+            0.314352
+          ],
+          "z_m": 0.46,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          -0.04097,
+          -0.04061,
+          0.46
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.44
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 16,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": [
+            0.401302,
+            0.452315
+          ],
+          "z_m": 0.45,
+          "status": "inferred"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.41901,
+            0.315278
+          ],
+          "z_m": 0.455,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          -0.04905,
+          -0.03768,
+          0.455
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.38
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 17,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": [
+            0.38776,
+            0.454167
+          ],
+          "z_m": 0.45,
+          "status": "inferred"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.411198,
+            0.31713
+          ],
+          "z_m": 0.45,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          -0.05449,
+          -0.03586,
+          0.45
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.34
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 18,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": [
+            0.37526,
+            0.453241
+          ],
+          "z_m": 0.445,
+          "status": "inferred"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.404427,
+            0.318981
+          ],
+          "z_m": 0.45,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          -0.05871,
+          -0.03445,
+          0.45
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.3
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 19,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": [
+            0.366406,
+            0.453241
+          ],
+          "z_m": 0.445,
+          "status": "inferred"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.398698,
+            0.321759
+          ],
+          "z_m": 0.45,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          -0.06223,
+          -0.03375,
+          0.45
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.27
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    },
+    {
+      "sample": 20,
+      "landmarks": [
+        {
+          "id": 0,
+          "uv": [
+            0.56276,
+            0.468981
+          ],
+          "z_m": 0.49,
+          "status": "inferred"
+        },
+        {
+          "id": 1,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 2,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 3,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 4,
+          "uv": [
+            0.359115,
+            0.452315
+          ],
+          "z_m": 0.445,
+          "status": "visible"
+        },
+        {
+          "id": 5,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 6,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 7,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 8,
+          "uv": [
+            0.39401,
+            0.326389
+          ],
+          "z_m": 0.45,
+          "status": "inferred"
+        },
+        {
+          "id": 9,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 10,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 11,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 12,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 13,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 14,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 15,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 16,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 17,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 18,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 19,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        },
+        {
+          "id": 20,
+          "uv": null,
+          "z_m": null,
+          "status": "unknown"
+        }
+      ],
+      "eef": {
+        "status": "estimated",
+        "position_camera_m": [
+          -0.06504,
+          -0.03305,
+          0.45
+        ],
+        "quaternion_camera_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "open_fraction": 0.25
+      },
+      "notes": "Условный центр и раскрытие руки оценены по положению кисти в этом RGB-кадре. Невидимые суставы оставлены unknown."
+    }
+  ],
+  "assumptions": [
+    "Камера визуально неподвижна по фону в просмотренной секунде.",
+    "K приблизительно выбран по перспективе; вместе с высотой кружки 0,11 м он даёт порядок глубины около 0,5 м у кружки.",
+    "Карта camera-z заполнена лишь в отдельных визуально распознанных ячейках; соседние ячейки не интерполированы.",
+    "Поза EEF обозначает условный центр хвата. Единичный quaternion — соглашение об ориентации осей камеры, не измеренная ориентация кисти.",
+    "Значения open_fraction обозначают видимое приближение пальцев к кружке, не измеренный зазор захвата."
+  ],
+  "limitations": [
+    "Оценка глубины и K сильно неоднозначна для одного RGB-ракурса; 0,11 м измерено только для кружки.",
+    "Большинство анатомических точек скрыты или размыты и оставлены unknown. Отмеченные inferred 2D-позиции и все z_m являются предположениями.",
+    "Разреженная карта глубины покрывает только выбранные ячейки; NPZ технически совместим, но полнота 3D-сцены низка.",
+    "Человеческая рука отличается от обучающего захвата Panda; интерфейсная EEF не является роботной кинематикой.",
+    "Отложенное будущее, 3D ADE/FDE и качество прогноза не проверялись."
+  ]
+}

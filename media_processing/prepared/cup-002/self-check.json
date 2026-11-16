@@ -1,0 +1,21 @@
+{
+  "projected_cup_bottom_px": [
+    699.8027613412228,
+    647.2978303747534
+  ],
+  "projected_cup_top_px": [
+    681.0403890886022,
+    354.50623810530766
+  ],
+  "projected_cup_height_px": 293.39213199440655,
+  "observed_mug_height_rough_px": 295,
+  "eef_step_m_min": 0.0027188416651213834,
+  "eef_step_m_max": 0.016903410898395626,
+  "eef_step_m_mean": 0.012391137550160471,
+  "depth_known_coarse": 1477,
+  "depth_total_coarse": 2304,
+  "hand_visible": 23,
+  "hand_inferred": 418,
+  "hand_total": 441,
+  "checks_are_internal_only": true
+}

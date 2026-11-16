@@ -1,167 +1,238 @@
-<div align="center">
+# UNITAS: воспроизведение прогноза движения и управления в LIBERO
 
-<h1>Unitas: A 3D-Native World Action Model for Embodied Manipulation</h1>
+## Цель и границы проверки
 
-<p>
-  <a href="https://dexforce.com/technical-report/#/unitas-wam"><img src="https://img.shields.io/badge/-Project%20Page-0A66C2?logo=googlechrome&amp;logoColor=white&amp;labelColor=555" alt="Project Page" /></a>
-  <a href="https://arxiv.org/abs/2610.12099"><img src="https://img.shields.io/badge/-Paper-B31B1B?logo=arxiv&amp;logoColor=white&amp;labelColor=555" alt="Paper" /></a>
-  <a href="https://huggingface.co/RobbinWang123/Unitas"><img src="https://img.shields.io/badge/%F0%9F%A4%97-Model%20Weights-yellow" alt="Model Weights" /></a>
-  <img src="https://img.shields.io/badge/Dataset-Coming%20soon-9CA3AF" alt="Dataset: Coming soon" />
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-green" alt="License: Apache 2.0" /></a>
-</p>
+Я проверил опубликованные веса UNITAS в трёх режимах: прогноз движения точек на двух штатных RGB-D-примерах, управление роботом в LIBERO и прогноз на собственной RGB-записи с оценённой глубиной. Обучение и дообучение не проводились. Цель — воспроизвести доступный инференс, проследить преобразование наблюдений в траектории и команды и определить, какие выводы поддерживают сохранённые данные.
 
-<p>
-<span><a href="https://robbinw.github.io/" rel="noopener noreferrer" target="_blank">Ruixiang Wang</a><sup>1,2*</sup></span>, &nbsp; <span><a href="https://yysu.site/" rel="noopener noreferrer" target="_blank">Yongyi Su</a><sup>3*†</sup></span>, &nbsp; <span>Wenlve Zhou<sup>3</sup></span>, &nbsp; <span>Bo Yue<sup>1,2</sup></span>, &nbsp; <span>Hengyan Liu<sup>1,2</sup></span>, &nbsp; <span>Dekun Lu<sup>2</sup></span><br>
-<span>Yuxin Tian<sup>1,2</sup></span>, &nbsp; <span>Yihan Fang<sup>1,2</sup></span>, &nbsp; <span>Zerui Wu<sup>2</sup></span>, &nbsp; <span>Xing Hu<sup>2</sup></span>, &nbsp; <span>Jietao Chen<sup>2</sup></span>, &nbsp; <span>Yong Guo<sup>2</sup></span><br>
-<span>Ziyan He<sup>2</sup></span>, &nbsp; <span>Junbin Yuan<sup>4</sup></span>, &nbsp; <span>Guiliang Liu<sup>1</sup></span>, &nbsp; <span>Xiaofen Xing<sup>5</sup></span>, &nbsp; <span><a href="http://kuijia.site/" rel="noopener noreferrer" target="_blank">Kui Jia</a><sup>1,2</sup></span>
-<br>
-<sub>
-<sup>1</sup> CUHK-SZ &nbsp; <sup>2</sup> DexForce &nbsp; <sup>3</sup> FSU &nbsp; <sup>4</sup> SYSU &nbsp; <sup>5</sup> SCUT &nbsp; · &nbsp;
-<sup>*</sup> Equal contribution &nbsp; <sup>†</sup> Correspondence to &lt;suyongyi@fosu.edu.cn&gt;
-</sub>
-</p>
+В работе разделены три результата: визуальная правдоподобность прогноза, выполнение задачи в симуляторе и метрическая точность будущего движения. Первые два проверены в соответствующих условиях. Третий не измерен: для использованных SceneFlow-входов нет эталонных будущих 3D-соответствий. Поэтому приведённые ниже смещения точек не трактуются как ошибки ADE/FDE.
 
-</div>
+## Как связаны наблюдение, прогноз и действие
 
-<img src="assets/overview.png" alt="UNITAS overview" width="100%">
+В UNITAS action flow описывает движение фиксированных точек захвата, scene flow — движение query-точек сцены. Отдельная EEF-ветвь выдаёт будущие положения и ориентации рабочего органа, а также раскрытие захвата. Траектория точки кодируется одним токеном с физическим временем $t_k=k/fps$ и пространственным якорем. Таким образом, путь поверхности и исполняемая команда имеют разные представления. [Статья, с. 4–6](https://arxiv.org/pdf/2610.12099#page=4).
 
-**UNITAS** is a 3D-native world action model for embodied manipulation. It unifies observations, actions, and scene dynamics in a shared metric 3D frame within each interaction, using a common representation across robot embodiments and human hands.
+Зрительно-языковой контекст формируется с использованием Florence-2-large, изображений и инструкции; калибровка камер и глубина связывают визуальные признаки с общей 3D-системой. История движения дополняет текущее наблюдение. Координаты в использованных NPZ выражены в метрах. При обратной проекции учитываются центры пикселей и глубина вдоль оптической оси камеры; преобразование между камерой и системой модели задаётся сохранёнными внешними матрицами. Для исторического RoboTwin-файла физическое начало системы отдельно не документировано: я использовал его исходные матрицы без перецентрирования. [Статья, с. 4–5](https://arxiv.org/pdf/2610.12099#page=5).
 
-### Highlights
+По статье команды могут генерироваться без будущих point flows. Проверенная локальная реализация дополнительно вычисляет траекторию захвата, но EEF-ветвь получает статический контекст, а не токены предсказанного будущего. При SceneFlow-прогнозе траектория захвата становится условием для движения сцены. Поэтому успешная policy сама по себе не доказывает, что команды выбраны через явное предсказание будущего сцены. [Статья, с. 4, уравнение 3](https://arxiv.org/pdf/2610.12099#page=4); реализация: `src/unitas/models/decoder.py`, `src/unitas/inference/policy.py`.
 
-- **One physical space.** Observations, actions, and scene dynamics share a metric 3D world-coordinate frame.
-- **A common motion representation.** Point trajectories represent robot motion, human hand motion, and scene dynamics.
-- **Complementary capabilities.** The framework supports robot-action generation and action-conditioned scene prediction.
-- **Paper results with 1.7B parameters.** Success rates reach **99.8%** on LIBERO, **89.1%** on LIBERO-Plus, **56.2%** on VLABench, and **92.94% / 93.04%** on RoboTwin Clean / Randomized. Moving ADE is **35% lower** than PointWorld on RoboTwin scene prediction.
+В демонстрациях SceneFlow модель один раз получает наблюдение, генерирует захват и EEF, затем рассчитывает движение сцены порциями точек. Визуализатор Viser воспроизводит готовые координаты. В policy-контуре команды исполняются в MuJoCo, после блока действий поступает новое наблюдение. Изображения полноценной геометрии симулятора нельзя выдавать за реконструкцию или предсказание SceneFlow.
 
-## Release status
+## 1. Штатный RGB-D-пример: двуручный подъём кастрюли
 
-- [x] Model checkpoints
-- [x] Inference and evaluation code
-- [ ] Training code
-- [ ] Training dataset
+Первый вход — RoboTwin `robotwin_7c59d8eb33_0088.npz`, инструкция «Hold the cylindrical kitchenpot with both arms». Три RGB-D-вида размером 224×224 дополняются историей двух захватов и 45 989 точками сцены. Использованы опубликованные SceneFlow-веса, 10 шагов сэмплирования, порции по 256 точек и фиксированные seeds. Расчёт в Colab T4/FP32 завершился за 241,70 с с загрузкой модели и сохранением результата; это не задержка управляющего шага.
 
-## Installation
+Три исходные камеры до прогноза. Дополнительные виды показывают ручки и боковые поверхности, но не дают полной замкнутой геометрии объекта.
 
-Clone this repo and set up the environment with a few commands:
+![RoboTwin: исходный вид cam0](outputs/stage1/robotwin_7c59d8eb33_0088/media/input-cam0.png)
+![RoboTwin: исходный вид cam1](outputs/stage1/robotwin_7c59d8eb33_0088/media/input-cam1.png)
+![RoboTwin: исходный вид cam2](outputs/stage1/robotwin_7c59d8eb33_0088/media/input-cam2.png)
 
-```bash
-git clone https://github.com/DexForce/UNITAS.git
-cd UNITAS
+Выход содержит 20 будущих шагов при 15 Гц — 1,33 с. Массив `scene` имеет форму [21, 45989, 3], `gripper` — [21, 40, 3]: первый кадр сохраняет исходное состояние. `eef_poses` содержит 20 будущих поз двух рабочих органов, `eef_open` — значения раскрытия. Начальное облако совпадает с исходными query-точками; индекс каждой точки сохраняется во времени.
 
-conda create -n unitas python=3.10 pip -y
-conda activate unitas
-python -m pip install -e .
-```
+Прогноз RoboTwin с фиксированным ракурсом, кадры 0/10/20. Цветные точки показывают сцену, розовые — захваты; линия траектории помогает отличить движение от изменения перспективы.
 
-Optional FlashAttention 2 (requires a compatible CUDA toolkit):
+![RoboTwin: начало, середина и конец прогноза](outputs/stage1/robotwin_7c59d8eb33_0088/media/frames-00-10-20-fixed-view.png)
 
-```bash
-python -m pip install "flash-attn>=2.6,<3" --no-build-isolation
-```
+В прогнозе кастрюля поднимается, её корпус, крышка и ручки остаются узнаваемыми; фон визуально почти неподвижен. После подъёма открывается область без точек под объектом. Модель перемещает наблюдавшиеся точки и не достраивает ранее закрытую поверхность стола. Такая пустота согласуется с ограничением выхода, однако контакт захватов, удержание и физическая выполнимость здесь не проверялись.
 
-Florence uses FlashAttention 2 when available, otherwise PyTorch SDPA.
+<video controls preload="metadata" playsinline poster="outputs/stage1/robotwin_7c59d8eb33_0088/media/frames-00-10-20-fixed-view.png" src="outputs/stage1/robotwin_7c59d8eb33_0088/media/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D1%8C%202026-11-11%20152442.mp4" style="width:100%;max-width:1100px"></video>
 
-Download [Florence-2-large](http://huggingface.co/microsoft/Florence-2-large)
-to `checkpoints/Florence-2-large`; all UNITAS checkpoints share this encoder:
+[Видео SceneFlow: подъём кастрюли](outputs/stage1/robotwin_7c59d8eb33_0088/media/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D1%8C%202026-11-11%20152442.mp4). Это просмотр одного сохранённого прогноза в Viser, без исполнения действий. Камера вращается, а Loop возвращает конец к началу; повтор не означает новый прогон или падение кастрюли.
 
-```bash
-python -m pip install "huggingface_hub[cli]>=0.34,<1"
-hf download microsoft/Florence-2-large \
-  --local-dir checkpoints/Florence-2-large \
-  --exclude "*.bin"
-```
+## 2. Второй пример: кружка в LIBERO
 
-## Model checkpoints
+На входе `libero_3d040e000e_0077.npz` использованы две RGB-D-камеры, история одного захвата и 41 801 точка сцены. Инструкция — «Put the white mug on the plate». Тот же SceneFlow-путь выдал 20 будущих шагов при 20 Гц, то есть 1 с; полный запуск занял 252,78 с. Два слота EEF в общей схеме выхода не означают наличие второй руки у однорукого Panda.
 
-Download the checkpoints you need to `checkpoints/`.
+Исходные виды LIBERO: общая камера и камера на запястье. Это текущие наблюдения, а не сгенерированное будущее.
 
-<table>
-  <thead>
-    <tr>
-      <th>Model</th>
-      <th>Use case</th>
-      <th>From scratch</th>
-      <th>Pretrained → Fine-tuned</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href="https://huggingface.co/RobbinWang123/Unitas#robotwin"><strong>UNITAS-RoboTwin</strong></a></td>
-      <td>RoboTwin Clean / Randomized evaluation</td>
-      <td><a href="https://huggingface.co/RobbinWang123/Unitas/blob/main/unitas_robotwin_scratch.pt">Checkpoint</a></td>
-      <td><a href="https://huggingface.co/RobbinWang123/Unitas/blob/main/unitas_robotwin_finetuned.pt">Checkpoint</a></td>
-    </tr>
-    <tr>
-      <td><a href="https://huggingface.co/RobbinWang123/Unitas#libero"><strong>UNITAS-LIBERO</strong></a></td>
-      <td>LIBERO / LIBERO-Plus evaluation</td>
-      <td><a href="https://huggingface.co/RobbinWang123/Unitas/blob/main/unitas_libero_scratch.pt">Checkpoint</a></td>
-      <td><a href="https://huggingface.co/RobbinWang123/Unitas/blob/main/unitas_libero_finetuned.pt">Checkpoint</a></td>
-    </tr>
-    <tr>
-      <td><a href="https://huggingface.co/RobbinWang123/Unitas#vlabench"><strong>UNITAS-VLABench</strong></a></td>
-      <td>VLABench evaluation</td>
-      <td><a href="https://huggingface.co/RobbinWang123/Unitas/blob/main/unitas_vlabench_scratch.pt">Checkpoint</a></td>
-      <td><a href="https://huggingface.co/RobbinWang123/Unitas/blob/main/unitas_vlabench_finetuned.pt">Checkpoint</a></td>
-    </tr>
-    <tr>
-      <td><a href="https://huggingface.co/RobbinWang123/Unitas#scene-flow"><strong>UNITAS-SceneFlow</strong></a></td>
-      <td>Action and scene flow prediction</td>
-      <td colspan="2" align="center"><a href="https://huggingface.co/RobbinWang123/Unitas/blob/main/unitas_scene_flow.pt">Jointly trained</a></td>
-    </tr>
-  </tbody>
-</table>
+![LIBERO: исходная общая камера](outputs/stage2/libero_3d040e000e_0077/media/input-cam0.png)
+![LIBERO: исходная камера на запястье](outputs/stage2/libero_3d040e000e_0077/media/input-cam1.png)
 
-## Scene flow
+Поскольку будущего 3D-эталона нет, я сопоставил прогноз с исходными RGB через калибровку. Сначала проверено начальное совмещение; затем показаны те же идентификаторы точек на шагах 0/10/20. Начальная группа выбирается с учётом поля зрения и глубины. Будущая видимость неизвестна, поэтому точки будущего не отбрасываются по начальной карте глубины. Проверки и контрольные суммы сохранены отдельно. [Проверка проекций](outputs/stage2/libero_3d040e000e_0077/projections-20261112/verification.json).
 
-<img src="assets/scene_flow_demo.gif" alt="Predicted scene and gripper motion" width="100%">
+Начальное совмещение общего вида проверяет согласованность сохранённых координат, матриц и проекции. Оно не является независимым измерением точности калибровки и не оценивает будущее движение.
 
-Run from the repository root after installation. The bundled RGB-D sample needs no simulator.
-[inference.py](src/unitas/scene_flow/inference.py) saves predicted scene and gripper
-trajectories; [visualize.py](src/unitas/scene_flow/visualize.py) opens the saved result in Viser.
+![LIBERO: проверка начального совмещения](outputs/stage2/libero_3d040e000e_0077/projections-20261112/cam0-alignment.png)
+
+Проекции траекторий в общую камеру, шаги 0/10/20. Во всех панелях фон — одно исходное RGB; расхождение движущихся точек с этой фотографией не является ошибкой относительно реального будущего.
+
+![LIBERO: проекции в общую камеру](outputs/stage2/libero_3d040e000e_0077/projections-20261112/cam0-trajectories.png)
+
+Проекции в начальную позу камеры на запястье. Камера фиксирована для сопоставимости: это не будущие виды камеры, перемещающейся вместе с роботом.
+
+![LIBERO: проекции в камеру на запястье](outputs/stage2/libero_3d040e000e_0077/projections-20261112/cam1-trajectories.png)
+
+На просмотренных кадрах кружка и захват движутся согласованно без очевидного грубого распада формы. Пустоты и некоторые видимые зазоры присутствуют уже в начальном облаке. Их нельзя целиком относить к ошибке прогнозирования. Фиксированные query-точки не восстанавливают скрытую сторону кружки, нижние поверхности и открывающийся участок стола. Надёжно судить о контакте или завершении постановки по этому выходу нельзя.
+
+У преимущественно статического фона обнаружено малое ненулевое предсказанное движение. В разведочно выбранной области стола из 26 151 точки медиана конечного смещения составила 0,714 мм, 95-й перцентиль — 0,961 мм. Область выбрана после просмотра и не является независимой разметкой; эти числа описывают прогноз, а не ошибку относительно эталона. Физическая вибрация стола как объяснение не подтверждена.
+
+<video controls preload="metadata" playsinline poster="outputs/stage2/libero_3d040e000e_0077/projections-20261112/cam0-trajectories.png" src="outputs/stage2/libero_3d040e000e_0077/media/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D1%8C%202026-11-11%20185459.mp4" style="width:100%;max-width:1100px"></video>
+
+[Видео SceneFlow: кружка и захват](outputs/stage2/libero_3d040e000e_0077/media/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D1%8C%202026-11-11%20185459.mp4). Просмотр готового прогноза без симулятора; он позволяет оценить совместное движение видимых фрагментов, но не подтверждает выполнение задачи.
+
+## 3. Замкнутое управление в LIBERO
+
+Для policy выбрана одна задача `libero_90/task72`, «put the white mug on the plate». В каждой серии оценены штатные начальные состояния 0–9 из 50, без отбора по исходу. Перед управлением выполнялись 10 settle-шагов; лимит составлял 800 управляющих действий. Использованы client seed 42, sampling seed 160484 и 10 шагов денойзинга. Пробный эпизод сохранён отдельно и не включён в основную долю успехов.
+
+На каждой перепланировке policy получает изображения и глубину двух камер 256×256, калибровку, состояние и историю робота, а также инструкцию. Адаптер переводит EEF-позы из системы базы в мировую систему, кватернион — в axis-angle и формирует абсолютную команду `OSC_POSE`: [x,y,z,rx,ry,rz,g]. Значение g=−1 открывает захват, g=+1 закрывает. Исполняются первые 10 действий — 0,5 с при 20 Гц, затем наблюдение обновляется.
+
+В проверенном пути ограничения величины поступательного и вращательного шага адаптера заданы как `None`; защиту по значениям 8 см/45° из настроек класса этому запуску приписывать нельзя. Поля `state_conditioning` и `context_conditioning` имеют режим `zero_vector`, но история поз и точек захвата передаётся другими входами и сохраняется.
+
+Во втором условии ambient/diffuse/specular RGB двух именованных источников света умножены на 0,5; headlight оставлен исходным. Геометрия, физика, камеры и начальные состояния не менялись. В проверочном состоянии средняя RGB-интенсивность снизилась с 67,78 до 53,57 для общей камеры и с 74,64 до 58,82 для камеры на запястье — примерно на 21%. Следовательно, это умеренное изменение света, а не изображение вдвое темнее или работа в темноте.
+
+Исходное и уменьшенное освещение с двух камер при неизменной геометрии. До оценки проверено совпадение физического состояния и глубины.
+
+![LIBERO: вмешательство в освещение](outputs/stage3/camera-check/comparison.png)
+
+Успех определялся `env.check_success()`: число успешных эпизодов делилось на 10 отдельно в каждой серии. Цель `(On porcelain_mug_1 plate_1)` проверяет контакт, координату z начала системы тела кружки не ниже начала системы тела тарелки и расстояние XY между ними менее 0,03 м. Используются `body_xpos`, а не обязательно центры масс. Отпускание захвата, отвод руки и устойчивость после отпускания не требуются. Поэтому SR означает достижение условия бенчмарка; завершение действия «поставить и отпустить» отдельно не подтверждено.
+
+Дополнительно сопоставлены опубликованные finetuned и scratch-веса в их штатных временных конфигурациях. У finetuned длины истории/прогноза — 20/20 шагов, у scratch — 30/30, обе частоты 20 Гц. Задача, состояния, seeds, освещение и исполнение первых 10 действий одинаковы. Это сравнение готовых конфигураций; различие результатов нельзя причинно отнести только к предобучению.
+
+Результаты четырёх серий. Действия не включают settle-шаги; времена относятся к синхронизированному `Policy.act`, включая подготовку входа и преобразование выхода. [Полные результаты](outputs/stage3/scratch/comparison.json).
+
+| Веса / свет | Успехи | Среднее число действий | Запросы policy | Среднее Policy.act, с | Медиана, с |
+|---|---:|---:|---:|---:|---:|
+| Finetuned / обычный | 10/10 | 144,8 | 148 | 1,657 | 1,470 |
+| Finetuned / уменьшенный | 10/10 | 141,8 | 146 | 1,686 | 1,489 |
+| Scratch / обычный | 10/10 | 140,7 | 145 | 1,726 | 1,489 |
+| Scratch / уменьшенный | 10/10 | 133,3 | 139 | 1,639 | 1,457 |
+
+Во всех четырёх сериях достигнуты 10/10 успехов без ошибок policy-запросов. Это 40 эпизодов на десяти повторяющихся начальных состояниях одной задачи. Малая выборка и потолок SR не позволяют считать условия эквивалентными или сделать вывод об общей устойчивости. Меньшее среднее число действий scratch описывает наблюдавшиеся траектории, но не устанавливает превосходство весов. Неудачного эпизода в фиксированной выборке нет, поэтому причины отказов по ней разобрать невозможно.
+
+Медианные задержки около 1,5 с превышают длительность исполняемого блока 0,5 с. Симулятор ждёт ответ модели; успешное замедленное выполнение не демонстрирует управление в реальном времени на T4/FP32. Запросы внутри эпизодов зависимы, а серии выполнялись в разных сессиях; небольшие различия времени между весами нельзя трактовать как доказанное ускорение. Эти измерения также нельзя напрямую сравнивать с actions-only на другом оборудовании из статьи.
+
+Успешный эпизод 0 при уменьшенном свете: состояния 10/85/160, время симуляции 0,50/4,25/8,00 с, два неподвижных ракурса. Последний кадр — сохранённое финальное состояние. Нахождение кружки у тарелки соответствует условию бенчмарка; отпускание отдельно не доказано.
+
+![LIBERO: состояния успешного эпизода](outputs/stage3/dim_light/figures/comparison.png)
+
+<video controls preload="metadata" playsinline src="outputs/stage3/baseline/libero_90_task72_episode000.mp4" style="width:100%;max-width:1100px"></video>
+
+[Видео finetuned: обычный свет, эпизод 0](outputs/stage3/baseline/libero_90_task72_episode000.mp4). Авторский MP4 записан при 30 fps для управления 20 Гц, поэтому движение ускорено примерно в 1,5 раза; финальное состояние после последнего действия не включено. Видео иллюстрирует выполнение, а исход определён сохранённым результатом симулятора.
+
+<video controls preload="metadata" playsinline src="outputs/stage3/dim_light/libero_90_task72_episode000.mp4" style="width:100%;max-width:1100px"></video>
+
+[Видео finetuned: уменьшенный свет, эпизод 0](outputs/stage3/dim_light/libero_90_task72_episode000.mp4). То же начальное состояние при изменённом освещении; для временных выводов используются timestamps записанных состояний. Ограничения MP4 те же, что у предыдущего ролика.
+
+## 4. Собственная RGB-сцена: пределы переноса
+
+В дополнительном опыте использована RGB-запись зелёной кружки высотой 11 см и человеческой руки. Инструкция «Move the mug.» зафиксирована до просмотра продолжения. История охватывает секунду перед границей 6,0 с; следующая секунда отделена и не использована при подготовке входа и инференсе. Датчика глубины и измеренной калибровки нет: глубина, K, плоскость стола и положения руки оценены по доступным кадрам с опорой на высоту кружки.
+
+Вход содержит 32 190 точек, одну камеру и 20 условных точек пальцев с условной EEF-позой. В истории 418 из 441 положений анатомических точек помечены как предположенные. Это не штатный человеческий интерфейс статьи: ради совместимости выбран домен `libero`, который задаёт описание Panda. Статья включает человеческие данные, поэтому проблему нельзя свести к утверждению, что UNITAS вообще не поддерживает руки человека. Здесь проверяется именно грубо оценённый и несогласованный с доменом вход.
+
+Одно начальное облако с исходного и бокового ракурсов, кадр 0/20. Узнаваемость спереди не подтверждает правильность глубины; полосы сбоку присутствуют до прогнозирования.
+
+![Собственная сцена: исходный ракурс](outputs/stage4/cup-002/media/screenshots/image.png)
+![Собственная сцена: боковой ракурс](outputs/stage4/cup-002/media/screenshots/image%20copy.png)
+
+Глубина оценена на сетке 64×36 и увеличена до 224×224 ближайшим соседом; стол дополнен пересечением лучей с оценённой плоскостью. Это объясняет полосы и фрагменты при повороте: соседние пиксели наследуют одинаковую глубину. Тёмная область под кружкой также переносится из исходного RGB, а не рассчитывается как новая падающая тень. Эти артефакты начальной геометрии нельзя выдавать за деформации, созданные прогнозом UNITAS.
+
+Модель приняла вход и выдала конечный прогноз на 20 шагов при 20 Гц. Медианное смещение условного захвата за секунду составило 8,44 мм; по всему облаку — 0,56 мм, 95-й перцентиль — 1,04 мм. При почти неподвижной основной массе 231 точка сместилась более чем на 5 мм, максимум — 60,58 мм. Это сохранённые перемещения предсказанных точек, а не метрические ошибки относительно реальности. [Результат запуска](outputs/stage4/cup-002/run-summary.json).
+
+Отложенные RGB-кадры и проекции прогноза, шаги 0/10/20. Голубые точки выбраны по исходному зелёному цвету, это не эталонная маска кружки; розовые — условный захват. Последний RGB относится к 0,95 с, прогноз — к 1,00 с, поэтому временное расхождение около 0,05 с необходимо учитывать.
+
+![Собственная сцена: прогноз и отложенное видео](outputs/stage4/cup-002/comparison/prediction-vs-heldout.png)
+
+В отложенной секунде заметного переноса кружки не видно; почти неподвижный прогноз качественно согласуется с этой записью. Вместе с тем опыт не демонстрирует ожидаемого осмысленного перемещения по команде. Инструкция не задаёт направления и цели, история почти статична, глубина предположена, а представление руки не соответствует выбранному домену. Вклад каждого фактора одним прогоном не отделён. Робот не исполнял команды; перенос управления на человеческую руку или реальное оборудование не проверялся.
+
+<video controls preload="metadata" playsinline poster="outputs/stage4/cup-002/media/screenshots/image%20copy.png" src="outputs/stage4/cup-002/media/videos/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D1%8C%202026-11-12%20173020.mp4" style="width:100%;max-width:1100px"></video>
+
+[Видео собственной сцены в Viser](outputs/stage4/cup-002/media/videos/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D1%8C%202026-11-12%20173020.mp4). Вращение камеры смешивает изменение перспективы с движением точек. Оценка величин смещения сделана по NPZ, а не по экранным расстояниям ролика; воспроизведение не является физическим исполнением.
+
+<video controls preload="metadata" playsinline poster="outputs/stage4/cup-002/comparison/prediction-vs-heldout.png" src="media_processing/prepared/cup-001/heldout/future.mp4" style="width:100%;max-width:1100px"></video>
+
+[Отложенная RGB-секунда](media_processing/prepared/cup-001/heldout/future.mp4). Отложенное продолжение исходной записи использовано для сравнения только после сохранения прогноза. Оно позволяет качественно сопоставить видимое движение, но не даёт будущих 3D-соответствий и измеренной глубины.
+
+## Выводы
+
+Опубликованный SceneFlow-инференс воспроизведён на двух штатных примерах с разными роботами и камерами. Получено качественно правдоподобное короткое движение кастрюли и кружки, а проекции связывают сохранённые траектории с исходными изображениями. Это ограниченная проверка работоспособности и правдоподобия: точность будущего, жёсткость и контакты численно не установлены, а невидимые поверхности этим выходом не достраиваются.
+
+В LIBERO обе опубликованные конфигурации достигли условия успеха во всех десяти фиксированных состояниях при двух вариантах освещения. Результат относится к одной задаче и умеренному изменению света; он не воспроизводит полный бенчмарк статьи и не доказывает превосходство scratch или finetuned. Собственная сцена показала более слабое основание для выводов: формат принят, но качество входной геометрии и условного представления руки ограничивает интерпретацию прогноза.
+
+Следующий содержательный шаг — независимая калиброванная RGB-D-запись с отслеживаемыми будущими 3D-точками и согласованным представлением руки либо робота. Она позволит отделить ошибку подготовки от ошибки динамики и оценить ADE/FDE с явной маской видимости. Для policy нужны новые задачи и более широкий заранее заданный набор условий; причинное сравнение предобучения потребует отдельного согласованного временного протокола. Эти исследования в текущие результаты не включены.
+
+## Приложение Все эпизоды policy
+
+В таблице доступны все сорок попыток, включая одинаковые начальные состояния 0–9 в четырёх сериях. Номер эпизода обозначает начальное состояние, а не отдельную задачу. Это полный набор оценки; демонстрационные ролики в основном тексте не заменяют остальные попытки.
+
+| Начальное состояние | Finetuned обычный свет | Finetuned уменьшенный свет | Scratch обычный свет | Scratch уменьшенный свет |
+|---|---|---|---|---|
+| 0 | [Видео 00](outputs/stage3/baseline/libero_90_task72_episode000.mp4) | [Видео 00](outputs/stage3/dim_light/libero_90_task72_episode000.mp4) | [Видео 00](outputs/stage3/scratch/baseline/libero_90_task72_episode000.mp4) | [Видео 00](outputs/stage3/scratch/dim_light/libero_90_task72_episode000.mp4) |
+| 1 | [Видео 01](outputs/stage3/baseline/libero_90_task72_episode001.mp4) | [Видео 01](outputs/stage3/dim_light/libero_90_task72_episode001.mp4) | [Видео 01](outputs/stage3/scratch/baseline/libero_90_task72_episode001.mp4) | [Видео 01](outputs/stage3/scratch/dim_light/libero_90_task72_episode001.mp4) |
+| 2 | [Видео 02](outputs/stage3/baseline/libero_90_task72_episode002.mp4) | [Видео 02](outputs/stage3/dim_light/libero_90_task72_episode002.mp4) | [Видео 02](outputs/stage3/scratch/baseline/libero_90_task72_episode002.mp4) | [Видео 02](outputs/stage3/scratch/dim_light/libero_90_task72_episode002.mp4) |
+| 3 | [Видео 03](outputs/stage3/baseline/libero_90_task72_episode003.mp4) | [Видео 03](outputs/stage3/dim_light/libero_90_task72_episode003.mp4) | [Видео 03](outputs/stage3/scratch/baseline/libero_90_task72_episode003.mp4) | [Видео 03](outputs/stage3/scratch/dim_light/libero_90_task72_episode003.mp4) |
+| 4 | [Видео 04](outputs/stage3/baseline/libero_90_task72_episode004.mp4) | [Видео 04](outputs/stage3/dim_light/libero_90_task72_episode004.mp4) | [Видео 04](outputs/stage3/scratch/baseline/libero_90_task72_episode004.mp4) | [Видео 04](outputs/stage3/scratch/dim_light/libero_90_task72_episode004.mp4) |
+| 5 | [Видео 05](outputs/stage3/baseline/libero_90_task72_episode005.mp4) | [Видео 05](outputs/stage3/dim_light/libero_90_task72_episode005.mp4) | [Видео 05](outputs/stage3/scratch/baseline/libero_90_task72_episode005.mp4) | [Видео 05](outputs/stage3/scratch/dim_light/libero_90_task72_episode005.mp4) |
+| 6 | [Видео 06](outputs/stage3/baseline/libero_90_task72_episode006.mp4) | [Видео 06](outputs/stage3/dim_light/libero_90_task72_episode006.mp4) | [Видео 06](outputs/stage3/scratch/baseline/libero_90_task72_episode006.mp4) | [Видео 06](outputs/stage3/scratch/dim_light/libero_90_task72_episode006.mp4) |
+| 7 | [Видео 07](outputs/stage3/baseline/libero_90_task72_episode007.mp4) | [Видео 07](outputs/stage3/dim_light/libero_90_task72_episode007.mp4) | [Видео 07](outputs/stage3/scratch/baseline/libero_90_task72_episode007.mp4) | [Видео 07](outputs/stage3/scratch/dim_light/libero_90_task72_episode007.mp4) |
+| 8 | [Видео 08](outputs/stage3/baseline/libero_90_task72_episode008.mp4) | [Видео 08](outputs/stage3/dim_light/libero_90_task72_episode008.mp4) | [Видео 08](outputs/stage3/scratch/baseline/libero_90_task72_episode008.mp4) | [Видео 08](outputs/stage3/scratch/dim_light/libero_90_task72_episode008.mp4) |
+| 9 | [Видео 09](outputs/stage3/baseline/libero_90_task72_episode009.mp4) | [Видео 09](outputs/stage3/dim_light/libero_90_task72_episode009.mp4) | [Видео 09](outputs/stage3/scratch/baseline/libero_90_task72_episode009.mp4) | [Видео 09](outputs/stage3/scratch/dim_light/libero_90_task72_episode009.mp4) |
+
+Штатные MP4 записаны при 30 кадрах в секунду для управления с частотой 20 Гц: движение ускорено примерно в 1,5 раза, ожидание ответа модели не показано, финальное состояние после последнего действия отсутствует. Для оценки последнего состояния использованы отдельно сохранённые состояния MuJoCo, а не длительность MP4.
+
+## Приложение Воспроизведение и источники результатов
+
+Все приведённые результаты получены с опубликованными весами, без обучения и дообучения. Инференс выполнялся в Colab на Tesla T4; для совместимости в рабочих копиях отключён BF16-autocast и использован FP32. Указанные ниже команды описывают запуск после подготовки окружений и весов; заново в ходе подготовки отчёта они не выполнялись.
+
+| Компонент | Зафиксированная версия |
+|---|---|
+| Исходники UNITAS | `c92ee809abd2862a911c61d4b19389308f7eb57e` |
+| LIBERO | `8f1084e3132a39270c3a13ebe37270a43ece2a01` |
+| Архив кода исследования | `4eb7ae021f07b285e56fb1b1fd4d45c4afd0ca54` |
+| Python модели | 3.10; для SceneFlow 3.10.22 |
+| PyTorch и torchvision | 2.5.1+cu121 и 0.20.1+cu121 |
+| Transformers и NumPy | 4.57.1 и 1.26.4 |
+| MuJoCo и robosuite | 3.2.3 и 1.4.0 |
+| Hugging Face UNITAS | `1488f49761a56d7f44ab22a7e3b05a20799d5f51` |
+| Hugging Face Florence 2 large | `21a599d414c4d928c9032694c424fb94458e3594` |
+
+Код исследования доступен в [репозитории](https://github.com/leonidnn/unitas-wam-evaluation/tree/4eb7ae021f07b285e56fb1b1fd4d45c4afd0ca54). Для повторения следует использовать зафиксированные ревизии, а не текущие ветки upstream. Подробный пример установки двух окружений и загрузки весов с закреплёнными ревизиями находится в `src/stage3_policy/stage3_scratch.ipynb`. Для finetuned нужно выбрать соответствующий checkpoint и сохранить родные длины истории и прогноза: 20 шагов у finetuned и 30 у scratch, при 20 Гц. Исходные ноутбуки stage1–3 местами клонируют текущую ветку без `checkout`, поэтому сами по себе не закрепляют окружение эксперимента. Точные версии и FP32-патчи сохранены рядом с журналами.
+
+### Запуск SceneFlow
 
 ```bash
 python src/unitas/scene_flow/inference.py \
   --checkpoint checkpoints/unitas_scene_flow.pt \
   --florence-dir checkpoints/Florence-2-large \
   --input assets/scene_flow/observations/robotwin_7c59d8eb33_0088.npz \
-  --output outputs/scene_flow.npz
-
-python src/unitas/scene_flow/visualize.py --input outputs/scene_flow.npz --port 8080
+  --output outputs/repeat-stage1/scene_flow.npz \
+  --device cuda --steps 10 --chunk-size 256 \
+  --policy-seed 42 --scene-seed 210921
 ```
 
-Open `http://127.0.0.1:8080`. Drag the timeline, play/pause, or adjust point size.
-See [all six samples and custom inputs](docs/scene-flow.md).
+Команда выполняется из корня UNITAS в подготовленном GPU-окружении с указанной FP32-адаптацией. Для второго примера заменяются вход на `libero_3d040e000e_0077.npz` и выходной каталог. Размер порции 256 сохраняется: смена разбиения точек меняет последовательность генерации случайного шума и может изменить конкретный прогноз. Для собственного примера нужен отдельно подготовленный `input.npz`; обычное RGB-видео не является готовым входом этой команды.
 
-## Policy Evaluation
-
-Run the model server in `unitas`. Install each simulator and its assets in a
-separate environment following its official repository, then follow our evaluation guide.
-The server and client communicate over HTTP.
-
-| Benchmark | Official installation | UNITAS evaluation |
-|---|---|---|
-| LIBERO | [LIBERO](http://github.com/Lifelong-Robot-Learning/LIBERO#readme) | [Guide](docs/libero.md) |
-| LIBERO-Plus | [LIBERO-Plus](http://github.com/sylvestf/LIBERO-plus#readme) | [Guide](docs/libero.md#libero-plus) |
-| RoboTwin | [RoboTwin](http://github.com/RoboTwin-Platform/RoboTwin#readme) | [Guide](docs/robotwin.md) |
-| VLABench | [VLABench](http://github.com/OpenMOSS/VLABench#readme) | [Guide](docs/vlabench.md) |
-
-## License
-
-UNITAS is licensed under [Apache-2.0](LICENSE).
-
-## Citation
-
-We kindly encourage citation of our work if you find it useful.
-
-```bibtex
-@misc{wang2026unitas3dnativeworldaction,
-  title={UNITAS: A 3D-Native World Action Model for Embodied Manipulation},
-  author={Ruixiang Wang and Yongyi Su and Wenlve Zhou and Bo Yue and Hengyan Liu and Dekun Lu and Yuxin Tian and Yihan Fang and Zerui Wu and Xing Hu and Jietao Chen and Yong Guo and Ziyan He and Junbin Yuan and Guiliang Liu and Xiaofen Xing and Kui Jia},
-  year={2026},
-  eprint={2610.12099},
-  archivePrefix={arXiv},
-  primaryClass={cs.RO},
-  url={https://arxiv.org/abs/2610.12099},
-}
+```bash
+python src/unitas/scene_flow/visualize.py \
+  --input outputs/repeat-stage1/scene_flow.npz \
+  --host 127.0.0.1 --port 8080
 ```
+
+Просмотрщик открывает уже сохранённые координаты и не требует нового инференса. Он не исполняет действия и не проверяет физические контакты. Проекции этапа 2 воспроизводятся скриптом `src/stage2_transfer/project_prediction.py` с аргументами `--input`, `--prediction`, `--output-dir`; детали выбора точек сохранены в файле [проверки проекций](outputs/stage2/libero_3d040e000e_0077/projections-20261112/verification.json).
+
+### Две серии policy
+
+```bash
+SIM=/content/miniforge/envs/libero/bin/python
+"$SIM" /content/stage3_policy/run_evaluation.py \
+  --condition baseline --episodes 10 \
+  --checkpoint checkpoints/unitas_libero_finetuned.pt \
+  --output-dir /content/UNITAS/outputs/repeat-policy/baseline
+"$SIM" /content/stage3_policy/run_evaluation.py \
+  --condition dim_light --episodes 10 \
+  --checkpoint checkpoints/unitas_libero_finetuned.pt \
+  --output-dir /content/UNITAS/outputs/repeat-policy/dim_light
+```
+
+Эти команды рассчитаны на структуру Colab из notebook: исходники в `/content/UNITAS`, LIBERO в `/content/LIBERO`, обёртки в `/content/stage3_policy`, отдельные окружения модели и симулятора. Выходные каталоги должны быть новыми. Для scratch выбирается `unitas_libero_scratch.pt`. Сравнение четырёх готовых серий выполняет `src/stage3_policy/compare_checkpoints.py` с `--finetuned`, `--scratch`, `--native-temporal-config` и `--output`: разрешается только предусмотренное различие горизонтов, а не произвольные различия протокола.
+
+### Контрольные суммы весов
+
+| Файл | SHA 256 |
+|---|---|
+| `unitas_scene_flow.pt` | `49c44021c9e32ac7ccf7d69eabeaab0f7480a383a19955d4803d4fc52352b71b` |
+| `unitas_libero_finetuned.pt` | `a60972420b4049128170592af9953e6ee7fa591a7cfdf6d26560a23371d7b299` |
+| `unitas_libero_scratch.pt` | `20c13ae9e580a9279cba236ba599c4600506f98486127658232379b56af1e81d` |
+
+Результаты SceneFlow сохранены в `/outputs/stage1/` и `/outputs/stage2/`. Для policy доступны [сводка основного сравнения](outputs/stage3/summary.json), [сравнение четырёх серий](outputs/stage3/scratch/comparison.json), индивидуальные исходы и времена запросов в `/outputs/stage3/`. Для собственной сцены — [журнал](outputs/stage4/cup-002/run.log), [сводка запуска](outputs/stage4/cup-002/run-summary.json) и [проверка проекций](outputs/stage4/cup-002/comparison/projection-summary.json). Все пути указаны от корня репозитория.
+
+Полные числовые NPZ, веса и собственное исходное видео остаются в локальном проекте и не включены в эту папку отчёта. Здесь находятся текст, иллюстрации, ролики и компактные подтверждающие файлы. Видео из собственной записи предназначены для локального просмотра; этот отчёт не означает их публикации. Ограничения данных сохраняются: будущего 3D-эталона нет, а получить его из одних цветных кадров без дополнительных предположений нельзя.
+
