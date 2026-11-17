@@ -13,7 +13,11 @@ from record_libero import set_lighting
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output-dir', type=Path, required=True)
+    parser.add_argument('--light-scale', type=float, default=0.5)
+    parser.add_argument('--no-images', action='store_true')
     args = parser.parse_args()
+    if not np.isfinite(args.light_scale) or not 0 < args.light_scale <= 1:
+        parser.error('--light-scale must be in (0, 1]')
     from libero.libero import benchmark
     from evaluation.libero.client import create_environment
     from evaluation.libero.environment import model_observation
@@ -30,7 +34,7 @@ def main():
     try:
         before = env.sim.get_state().flatten().copy()
         base = model_observation(env, observation)
-        lights = set_lighting(env, .5)
+        lights = set_lighting(env, args.light_scale)
         changed = model_observation(env, observation)
         after = env.sim.get_state().flatten().copy()
         assert np.array_equal(before, after), 'Lighting modified the physical state'
@@ -38,17 +42,19 @@ def main():
         for name, camera in base['cameras'].items():
             dim = changed['cameras'][name]
             assert np.array_equal(camera['depth'], dim['depth']), 'Lighting changed depth'
-            assert np.any(camera['rgb'] != dim['rgb']), 'Lighting did not change RGB'
+            if args.light_scale != 1:
+                assert np.any(camera['rgb'] != dim['rgb']), 'Lighting did not change RGB'
             assert np.isfinite(camera['depth']).all() and (camera['depth'] > 0).any()
-            imageio.imwrite(out/f'{name}-baseline.png', camera['rgb'])
-            imageio.imwrite(out/f'{name}-dim.png', dim['rgb'])
+            if not args.no_images:
+                imageio.imwrite(out/f'{name}-baseline.png', camera['rgb'])
+                imageio.imwrite(out/f'{name}-dim.png', dim['rgb'])
             stats[name] = {'baseline_mean_rgb': float(camera['rgb'].mean()),
                            'dim_mean_rgb': float(dim['rgb'].mean()),
                            'changed_rgb_fraction': float(np.any(camera['rgb'] != dim['rgb'], axis=-1).mean())}
         result = {'suite': 'libero_90', 'task_id': task_id, 'task_name': task_name,
                   'instruction': instruction, 'initial_states': len(states),
                   'physical_state_unchanged': True, 'depth_unchanged': True,
-                  'modified_lights': lights, 'cameras': stats}
+                  'modified_lights': lights, 'light_scale': args.light_scale, 'cameras': stats}
         (out/'passed.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
         print(json.dumps(result))
     finally:

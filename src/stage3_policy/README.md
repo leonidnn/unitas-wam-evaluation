@@ -1,5 +1,17 @@
 # Запись и просмотр эпизода LIBERO
 
+## Дополнительная серия с сильным уменьшением света
+
+`setup_colab.sh` воспроизводит установку из `stage3_scratch.ipynb` с закреплёнными ревизиями UNITAS/LIBERO/весов, выбирает finetuned и прежний FP32-патч. Выполняется в Colab: `bash /content/stage3_policy/setup_colab.sh`. Скрипты обёртки должны находиться в `/content/stage3_policy`.
+
+```bash
+/content/miniforge/envs/libero/bin/python /content/stage3_policy/run_evaluation.py \
+  --condition stress --light-scale 0.1 --task-id 72 --episodes 10 \
+  --output-dir /content/UNITAS/outputs/stage3/stress/light-010
+```
+
+Параметр `--light-scale` меняет те же именованные источники, что прежнее условие 0.5; headlight сохраняется. Значение записывается в run.json и протокол. `--task-id` позволяет отдельно проверить другую задачу. Запись состояний включает каждый шаг и финал. Новые вызовы обёртки отключают автоматические MP4; демонстрации снимаются пользователем при воспроизведении записанных состояний.
+
 `stage3.ipynb` запускает policy UNITAS и штатный LIBERO-клиент. В первой ячейке нужно загрузить с ноутбука три файла из этой папки: `record_libero.py`, `replay_data.py` и `serve_timed.py`. Они сохраняются в `/content/stage3_policy/`; сам UNITAS клонируется отдельно в `/content/UNITAS`. Последняя ячейка вызывает обёртку `record_libero.py` с теми же аргументами, что у `evaluation/libero/client.py`.
 
 Обёртка использует авторские `main`, `run_episode`, создание среды и settle-процедуру из `evaluation/libero/client.py`. Она добавляет наблюдение за `env.step` без изменения переданных действий, возвращаемых наблюдений и критериев успеха. Исходники авторов при этом не переписываются. В notebook сохраняется прежняя FP32-адаптация policy в копии Colab.

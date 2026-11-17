@@ -10,8 +10,8 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src/stage3_policy'))
-from compare_checkpoints import compare
-import run_evaluation
+from compare_checkpoints import compare  # noqa: E402
+import run_evaluation  # noqa: E402
 
 
 class ComparisonTests(unittest.TestCase):
@@ -113,6 +113,28 @@ class ComparisonTests(unittest.TestCase):
         command = launch.call_args_list[0].args[0]
         self.assertEqual(command[command.index('--checkpoint')+1], 'scratch.pt')
         self.assertEqual(json.loads((output/'run.json').read_text())['server_command'], command)
+        client_command = launch.call_args_list[1].args[0]
+        self.assertIn('--no-save-videos', client_command)
+
+    def test_custom_lighting_is_recorded_and_passed_to_client(self):
+        output = self.root / 'mock-stress'
+        connection = MagicMock()
+        connection.__enter__.return_value.connect_ex.return_value = 1
+        response = MagicMock()
+        response.__enter__.return_value.read.return_value = b'{"domain":"libero"}'
+        server, client = MagicMock(), MagicMock()
+        server.poll.return_value = None
+        client.wait.return_value = 0
+        argv = ['run_evaluation.py', '--condition', 'stress', '--light-scale', '0.1',
+                '--task-id', '72', '--root', str(ROOT), '--output-dir', str(output)]
+        with patch.object(sys, 'argv', argv), patch.object(run_evaluation.socket, 'socket', return_value=connection), \
+             patch.object(run_evaluation.subprocess, 'check_output', return_value='revision\n'), \
+             patch.object(run_evaluation.subprocess, 'Popen', side_effect=[server, client]) as launch, \
+             patch.object(run_evaluation.urllib.request, 'urlopen', return_value=response), \
+             patch.object(run_evaluation, 'stop'), patch.object(run_evaluation.signal, 'signal'):
+            run_evaluation.main()
+        self.assertEqual(launch.call_args_list[1].kwargs['env']['UNITAS_LIGHT_SCALE'], '0.1')
+        self.assertEqual(json.loads((output/'run.json').read_text())['light_scale'], 0.1)
 
 
 if __name__ == '__main__':

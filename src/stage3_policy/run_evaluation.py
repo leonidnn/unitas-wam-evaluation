@@ -3,6 +3,7 @@
 import argparse
 from datetime import datetime, timezone
 import json
+import math
 import os
 from pathlib import Path
 import signal
@@ -29,12 +30,31 @@ def main():
     parser.add_argument('--root', type=Path, default=Path('/content/UNITAS'))
     parser.add_argument('--model-python', default='/content/miniforge/envs/unitas/bin/python')
     parser.add_argument('--sim-python', default='/content/miniforge/envs/libero/bin/python')
-    parser.add_argument('--condition', choices=['baseline', 'dim_light'], required=True)
+    parser.add_argument('--condition', choices=['baseline', 'dim_light', 'stress'], required=True)
+    parser.add_argument('--light-scale', type=float, default=None)
+    parser.add_argument('--task-id', type=int, default=None)
+    parser.add_argument('--push-force-n', type=float, default=0)
+    parser.add_argument('--push-start-step', type=int, default=60)
+    parser.add_argument('--push-duration-steps', type=int, default=3)
     parser.add_argument('--checkpoint', default='checkpoints/unitas_libero_finetuned.pt')
     parser.add_argument('--episodes', type=int, default=10)
     parser.add_argument('--episode-start', type=int, default=0)
     parser.add_argument('--output-dir', type=Path, required=True)
     args = parser.parse_args()
+    light_scale = args.light_scale
+    if light_scale is None:
+        if args.condition == 'stress':
+            parser.error('--condition stress requires --light-scale')
+        light_scale = 1.0 if args.condition == 'baseline' else 0.5
+    if not math.isfinite(light_scale) or not 0 < light_scale <= 1:
+        parser.error('--light-scale must be in (0, 1]')
+    if (not math.isfinite(args.push_force_n) or args.push_force_n < 0
+            or args.push_start_step < 0 or args.push_duration_steps < 1):
+        parser.error('Invalid push parameters')
+    if args.push_force_n and args.condition != 'stress':
+        parser.error('Use --condition stress for an external push')
+    if args.condition != 'stress' and light_scale != (1.0 if args.condition == 'baseline' else 0.5):
+        parser.error('Use --condition stress for a custom light scale')
     root, output = args.root.resolve(), args.output_dir.resolve()
     if args.episodes <= 0 or args.episode_start < 0:
         parser.error('Invalid episode range')
@@ -48,15 +68,21 @@ def main():
            'LIBERO_CONFIG_PATH': '/content/libero-config', 'MUJOCO_GL': 'egl',
            'PYOPENGL_PLATFORM': 'egl', 'MPLBACKEND': 'Agg', 'OMP_NUM_THREADS': '1',
            'OPENBLAS_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1',
-           'UNITAS_LIGHT_SCALE': '1' if args.condition == 'baseline' else '.5',
+           'UNITAS_LIGHT_SCALE': str(light_scale),
+           'UNITAS_PUSH_FORCE_N': str(args.push_force_n),
+           'UNITAS_PUSH_START_STEP': str(args.push_start_step),
+           'UNITAS_PUSH_DURATION_STEPS': str(args.push_duration_steps),
            'UNITAS_TIMING_PATH': str(output / 'server-policy-timing.jsonl')}
     task_code = ('from libero.libero import benchmark; '
                  's=benchmark.get_benchmark_dict()["libero_90"](); '
                  'print(next(i for i in range(s.n_tasks) '
                  'if s.get_task(i).language=="put the white mug on the plate"))')
-    task_output = subprocess.check_output([args.sim_python, '-c', task_code], env=env, text=True)
-    # Беру последнюю строку: LIBERO печатает предупреждение о datasets перед номером задачи.
-    task_id = int(task_output.strip().splitlines()[-1])
+    if args.task_id is None:
+        task_output = subprocess.check_output([args.sim_python, '-c', task_code], env=env, text=True)
+        # Беру последнюю строку: LIBERO печатает предупреждение перед номером задачи.
+        task_id = int(task_output.strip().splitlines()[-1])
+    else:
+        task_id = args.task_id
     server_command = [args.model_python, '-u', str(scripts / 'serve_timed.py'), '--domain', 'libero',
                       '--checkpoint', args.checkpoint,
                       '--florence-dir', 'checkpoints/Florence-2-large', '--device', 'cuda',
@@ -64,7 +90,7 @@ def main():
     client_command = [args.sim_python, '-u', str(scripts / 'record_libero.py'), '--suite', 'libero_90',
                       '--task-id', str(task_id), '--episode-start', str(args.episode_start),
                       '--num-episodes', str(args.episodes), '--seed', '42', '--settle-steps', '10',
-                      '--max-steps', '800', '--output-dir', str(output)]
+                      '--max-steps', '800', '--no-save-videos', '--output-dir', str(output)]
     metadata = {'started_utc': datetime.now(timezone.utc).isoformat(), 'status': 'running',
                 'condition': args.condition, 'light_scale': float(env['UNITAS_LIGHT_SCALE']),
                 'task_id': task_id, 'server_command': server_command, 'client_command': client_command,

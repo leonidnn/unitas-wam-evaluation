@@ -33,16 +33,21 @@ def set_lighting(environment, scale):
 
 
 class RecordingEnvironment:
-    def __init__(self, environment, recording):
+    def __init__(self, environment, recording, push=None):
         self.environment, self.recording = environment, recording
         self.phase = 1
+        self.push, self.policy_steps = push, 0
 
     def __getattr__(self, name):
         return getattr(self.environment, name)
 
     def step(self, action):
+        if self.phase == 2 and self.push is not None:
+            self.push.apply(self.policy_steps)
         observation = self.environment.step(action)
         self.recording.capture(action, self.phase)
+        if self.phase == 2:
+            self.policy_steps += 1
         return observation
 
     def close(self):
@@ -64,11 +69,19 @@ def main():
     active = {}
     current = {}
     light_scale = float(os.environ.get('UNITAS_LIGHT_SCALE', '1'))
+    push_force = float(os.environ.get('UNITAS_PUSH_FORCE_N', '0'))
+    push_step = int(os.environ.get('UNITAS_PUSH_START_STEP', '60'))
+    push_steps = int(os.environ.get('UNITAS_PUSH_DURATION_STEPS', '3'))
+    if not np.isfinite(push_force) or push_force < 0 or push_step < 0 or push_steps < 1:
+        raise ValueError('Invalid object-push parameters')
     if not np.isfinite(light_scale) or not 0 < light_scale <= 1:
         raise ValueError('UNITAS_LIGHT_SCALE must be in (0, 1]')
 
     def record_protocol(path, protocol):
         protocol['scene_condition'] = {'light_scale': light_scale}
+        if push_force:
+            protocol['scene_condition']['push'] = {'force_x_n': push_force,
+                                                  'start_step': push_step, 'steps': push_steps}
         protocol['recording_wrapper_sha256'] = sha256(__file__)
         return original_protocol(path, protocol)
 
@@ -79,6 +92,11 @@ def main():
         )
         try:
             lights = set_lighting(env, light_scale)
+            push = None
+            if push_force:
+                from interventions import ObjectPush
+                push = ObjectPush(env.sim.model._model, env.sim.data._data,
+                                  push_force, push_step, push_steps)
             if light_scale != 1:
                 observation = env.env._get_observations(force_update=True)
             recording = StateRecording(destination, env.sim.model._model, env.sim.data._data, {
@@ -87,12 +105,13 @@ def main():
                 'upstream_client_sha256': sha256(client.__file__),
                 'wrapper_sha256': sha256(__file__), 'policy_protocol': current['args'].protocol,
                 'condition': {'light_scale': light_scale, 'modified_lights': lights},
+                'disturbance': push.spec if push is not None else None,
             })
         except BaseException:
             env.close()
             raise
         active['recording'] = recording
-        return RecordingEnvironment(env, recording), observation, instruction, task_name
+        return RecordingEnvironment(env, recording, push), observation, instruction, task_name
 
     def settle(env, observation, steps):
         result = original_settle(env, observation, steps)
