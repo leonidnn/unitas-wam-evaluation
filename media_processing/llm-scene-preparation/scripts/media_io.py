@@ -38,14 +38,10 @@ def ffmpeg_path(explicit=None):
     found = shutil.which('ffmpeg')
     if found:
         return found
-    project = Path(__file__).resolve().parents[3]
-    local = sorted((project/'docs/local/media-tools/imageio_ffmpeg/binaries').glob('ffmpeg*.exe'))
-    if local:
-        return str(local[0])
     try:
         import imageio_ffmpeg
         return imageio_ffmpeg.get_ffmpeg_exe()
-    except ImportError as error:
+    except (ImportError, RuntimeError) as error:
         raise RuntimeError('Pass --ffmpeg or install a local FFmpeg executable') from error
 
 

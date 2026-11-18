@@ -12,6 +12,52 @@ import numpy as np
 from replay_data import load_recording, restore_frame, sha256
 
 
+def target_grasp_events(arrays, body_list, positions, rotations, contact_pairs, mug, plate):
+    policy = np.flatnonzero(arrays['phases'] == 2)
+    start = int(policy[0] - 1) if len(policy) else 0
+    mug_position = positions[:, body_list.index(mug)]
+    eef_index = body_list.index('gripper0_eef')
+    eef_rotation = np.asarray(rotations)[:, eef_index].reshape(-1, 3, 3)
+    relative = np.einsum('tij,ti->tj', eef_rotation, mug_position - positions[:, eef_index])
+    lift = mug_position[:, 2] - mug_position[start, 2]
+    bilateral, plate_contact, one_finger = [], [], []
+    fingers = ({'gripper0_leftfinger', 'gripper0_finger_joint1_tip'},
+               {'gripper0_rightfinger', 'gripper0_finger_joint2_tip'})
+    for pairs in contact_pairs:
+        others = {b if a == mug else a for a, b in pairs if mug in (a, b)}
+        sides = [bool(others & finger) for finger in fingers]
+        bilateral.append(all(sides))
+        one_finger.append(any(sides))
+        plate_contact.append(plate in others)
+
+    def first(mask, begin=start + 1):
+        indices = np.flatnonzero(np.asarray(mask)[begin:])
+        return int(indices[0]) + begin if len(indices) else None
+
+    def event(index):
+        if index is None:
+            return None
+        return {'frame': index, 'policy_steps': index - start,
+                'seconds_from_policy_start': float(arrays['times'][index] - arrays['times'][start])}
+
+    closed = first(arrays['actions'][:, -1] > 0)
+    touch = first(one_finger)
+    held = first(bilateral)
+    raised = first(lift >= 0.02)
+    placed = first(plate_contact)
+    loss = first(np.logical_not(one_finger), held + 1) if held is not None else None
+    if placed is not None and loss is not None and loss >= placed:
+        loss = None
+    stop = min([i for i in (loss, placed, len(lift) - 1) if i is not None])
+    relative_drift = (float(np.linalg.norm(relative[held:stop + 1] - relative[held], axis=1).max())
+                      if held is not None and stop >= held else None)
+    return {'first_close_command': event(closed), 'first_finger_contact': event(touch),
+            'first_bilateral_contact': event(held), 'first_lift_at_least_20mm': event(raised),
+            'first_total_finger_contact_loss_before_plate': event(loss),
+            'first_plate_contact': event(placed), 'lift_threshold_m': 0.02,
+            'max_mug_origin_drift_in_eef_frame_before_release_m': relative_drift}
+
+
 def inspect(directory, output):
     model, data, metadata, arrays = load_recording(directory)
     names = [mujoco.mj_id2name(model, mujoco.mjtObj.mjOBJ_BODY, i) or ''
@@ -77,6 +123,9 @@ def inspect(directory, output):
                        minimum_xy_distance_m=float(np.linalg.norm(delta[start:, :2], axis=1).min()),
                        final_xy_distance_m=float(np.linalg.norm(delta[-1, :2])),
                        final_mug_minus_plate_z_m=float(delta[-1, 2]))
+    if mug_name and plate_name and 'gripper0_eef' in body_list:
+        summary['target_grasp_events'] = target_grasp_events(
+            arrays, body_list, positions, rotations, contact_pairs, mug_name, plate_name)
     for column, name in enumerate(counts):
         indices = np.flatnonzero(contacts[:, column])
         summary[name] = {'frames': len(indices),

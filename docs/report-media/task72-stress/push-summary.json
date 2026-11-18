@@ -1,0 +1,16 @@
+{
+  "suite": "libero_90",
+  "task_ids": [
+    72
+  ],
+  "episodes_per_task": 10,
+  "shard_id": 0,
+  "num_shards": 1,
+  "max_steps": 800,
+  "settle_steps": 10,
+  "settle_controller_mode": "delta_then_absolute",
+  "successes": 9,
+  "rollouts": 10,
+  "success_rate": 0.9,
+  "protocol_id": "2ff3ff742ac072a4d061255fb0cd78fe7fe09d079621760aa0a0aa1c79c7c64d"
+}

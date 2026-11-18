@@ -1,4 +1,4 @@
-"""Run the original UNITAS LIBERO client with simulator-state recording.
+﻿"""Run the original UNITAS LIBERO client with simulator-state recording.
 
 Accepts the same command-line arguments as evaluation/libero/client.py.
 """
@@ -33,8 +33,9 @@ def set_lighting(environment, scale):
 
 
 class RecordingEnvironment:
-    def __init__(self, environment, recording, push=None):
+    def __init__(self, environment, recording, push=None, occlusion=None):
         self.environment, self.recording = environment, recording
+        self.occlusion = occlusion
         self.phase = 1
         self.push, self.policy_steps = push, 0
 
@@ -52,6 +53,8 @@ class RecordingEnvironment:
 
     def close(self):
         try:
+            if self.occlusion is not None:
+                self.occlusion.close()
             self.recording.save()
         finally:
             self.environment.close()
@@ -69,6 +72,8 @@ def main():
     active = {}
     current = {}
     light_scale = float(os.environ.get('UNITAS_LIGHT_SCALE', '1'))
+    occlusion_enabled = os.environ.get('UNITAS_MUG_OCCLUSION') == '1'
+    friction_scale = float(os.environ.get('UNITAS_MUG_FRICTION_SCALE', '1'))
     push_force = float(os.environ.get('UNITAS_PUSH_FORCE_N', '0'))
     push_step = int(os.environ.get('UNITAS_PUSH_START_STEP', '60'))
     push_steps = int(os.environ.get('UNITAS_PUSH_DURATION_STEPS', '3'))
@@ -82,6 +87,10 @@ def main():
         if push_force:
             protocol['scene_condition']['push'] = {'force_x_n': push_force,
                                                   'start_step': push_step, 'steps': push_steps}
+        if occlusion_enabled:
+            protocol['scene_condition']['mug_occlusion'] = True
+        if friction_scale != 1:
+            protocol['scene_condition']['mug_friction_scale'] = friction_scale
         protocol['recording_wrapper_sha256'] = sha256(__file__)
         return original_protocol(path, protocol)
 
@@ -90,8 +99,18 @@ def main():
         destination = Path(current['args'].output_dir) / (
             f'{suite}_task{task_id:02d}_episode{episode_id:03d}_replay'
         )
+        occlusion = None
         try:
+            if occlusion_enabled:
+                from occlusion import MugOcclusion
+                occlusion = MugOcclusion(env)
+                observation = env.env._get_observations(force_update=True)
             lights = set_lighting(env, light_scale)
+            friction = None
+            if friction_scale != 1:
+                from interventions import lower_mug_friction
+                friction = lower_mug_friction(env, friction_scale)
+                observation = env.env._get_observations(force_update=True)
             push = None
             if push_force:
                 from interventions import ObjectPush
@@ -105,20 +124,36 @@ def main():
                 'upstream_client_sha256': sha256(client.__file__),
                 'wrapper_sha256': sha256(__file__), 'policy_protocol': current['args'].protocol,
                 'condition': {'light_scale': light_scale, 'modified_lights': lights},
+                'visual_occluder': occlusion.spec if occlusion is not None else None,
+                'contact_modification': friction,
                 'disturbance': push.spec if push is not None else None,
             })
         except BaseException:
+            if occlusion is not None:
+                occlusion.close()
             env.close()
             raise
-        active['recording'] = recording
-        return RecordingEnvironment(env, recording, push), observation, instruction, task_name
+        wrapper = RecordingEnvironment(env, recording, push, occlusion)
+        active.update(recording=recording, wrapper=wrapper)
+        return wrapper, observation, instruction, task_name
 
     def settle(env, observation, steps):
-        result = original_settle(env, observation, steps)
+        observation, displacement = original_settle(env, observation, steps)
+        if env.occlusion is not None:
+            env.occlusion.calibrate()
+            env.recording.metadata['visual_occluder'] = env.occlusion.spec
+            env.recording.save_model()
+            observation = env.environment.env._get_observations(force_update=True)
         env.phase = 2
-        return result
+        return observation, displacement
 
     def timed_act(connection, observation, instruction, history):
+        wrapper = active['wrapper']
+        if wrapper.occlusion is not None and wrapper.policy_steps <= 100:
+            entry = {'policy_step': wrapper.policy_steps, 'visibility': wrapper.occlusion.measure()}
+            path = wrapper.recording.directory / 'occlusion-observations.jsonl'
+            with path.open('a', encoding='utf-8') as stream:
+                stream.write(json.dumps(entry) + '\n')
         start = time.perf_counter()
         status = 'error'
         count = None

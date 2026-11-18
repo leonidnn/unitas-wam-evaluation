@@ -24,18 +24,24 @@ class StateRecording:
         self.frames, self.times, self.actions, self.phases = [], [], [], []
         self.saved = False
         # Беру штатные mj_saveModel и mjSTATE_INTEGRATION из MuJoCo.
-        mujoco.mj_saveModel(model, str(self.directory / 'scene.mjb'))
         self.metadata = {
             **metadata, 'format': 'unitas-libero-replay-v1', 'mujoco_version': mujoco.__version__,
             'state_spec': self.spec, 'state_width': mujoco.mj_stateSize(model, self.spec),
-            'scene_sha256': sha256(self.directory / 'scene.mjb'),
             'status': 'incomplete', 'sampling': 'initial state and after each env.step',
             'phase_codes': {'0': 'initial', '1': 'settle', '2': 'policy'},
             'action_alignment': 'actions[i] led from states[i-1] to states[i]; row 0 is NaN',
             'recorder_sha256': sha256(__file__),
         }
-        self.write_metadata()
+        self.save_model()
         self.capture(None, 0)
+
+    def save_model(self):
+        import mujoco
+
+        path = self.directory / 'scene.mjb'
+        mujoco.mj_saveModel(self.model, str(path))
+        self.metadata['scene_sha256'] = sha256(path)
+        self.write_metadata()
 
     def write_metadata(self):
         path = self.directory / 'manifest.json'

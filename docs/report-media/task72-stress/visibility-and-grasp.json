@@ -1,0 +1,828 @@
+{
+  "scope": "Policy requests strictly before the first close command, up to action 100. Occluded target fraction is relative to the visible target in the same state with cylinder hidden.",
+  "paired_episodes": [
+    {
+      "episode_id": 0,
+      "baseline_success": true,
+      "occlusion_success": true,
+      "baseline_steps": 158,
+      "occlusion_steps": 153,
+      "baseline_events": {
+        "first_close_command": {
+          "frame": 87,
+          "policy_steps": 77,
+          "seconds_from_policy_start": 3.8499999999997425
+        },
+        "first_finger_contact": {
+          "frame": 96,
+          "policy_steps": 86,
+          "seconds_from_policy_start": 4.299999999999693
+        },
+        "first_bilateral_contact": {
+          "frame": 96,
+          "policy_steps": 86,
+          "seconds_from_policy_start": 4.299999999999693
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 107,
+          "policy_steps": 97,
+          "seconds_from_policy_start": 4.849999999999633
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 167,
+          "policy_steps": 157,
+          "seconds_from_policy_start": 7.849999999999458
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.008442612464379657
+      },
+      "occlusion_events": {
+        "first_close_command": {
+          "frame": 87,
+          "policy_steps": 77,
+          "seconds_from_policy_start": 3.8499999999997425
+        },
+        "first_finger_contact": {
+          "frame": 95,
+          "policy_steps": 85,
+          "seconds_from_policy_start": 4.249999999999699
+        },
+        "first_bilateral_contact": {
+          "frame": 99,
+          "policy_steps": 89,
+          "seconds_from_policy_start": 4.449999999999677
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 107,
+          "policy_steps": 97,
+          "seconds_from_policy_start": 4.849999999999633
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 163,
+          "policy_steps": 153,
+          "seconds_from_policy_start": 7.649999999999391
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.009794340110616763
+      },
+      "approach_visibility": {
+        "agentview": {
+          "count": 8,
+          "minimum": 0.25206611570247933,
+          "median": 0.2549581786241865,
+          "maximum": 0.30369843527738266
+        },
+        "robot0_eye_in_hand": {
+          "count": 8,
+          "minimum": 0.0,
+          "median": 0.0,
+          "maximum": 0.0
+        }
+      }
+    },
+    {
+      "episode_id": 1,
+      "baseline_success": true,
+      "occlusion_success": true,
+      "baseline_steps": 143,
+      "occlusion_steps": 147,
+      "baseline_events": {
+        "first_close_command": {
+          "frame": 70,
+          "policy_steps": 60,
+          "seconds_from_policy_start": 2.9999999999998357
+        },
+        "first_finger_contact": {
+          "frame": 80,
+          "policy_steps": 70,
+          "seconds_from_policy_start": 3.4999999999997806
+        },
+        "first_bilateral_contact": {
+          "frame": 80,
+          "policy_steps": 70,
+          "seconds_from_policy_start": 3.4999999999997806
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 93,
+          "policy_steps": 83,
+          "seconds_from_policy_start": 4.14999999999971
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 153,
+          "policy_steps": 143,
+          "seconds_from_policy_start": 7.1499999999993795
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.0068544890894524264
+      },
+      "occlusion_events": {
+        "first_close_command": {
+          "frame": 78,
+          "policy_steps": 68,
+          "seconds_from_policy_start": 3.3999999999997916
+        },
+        "first_finger_contact": {
+          "frame": 85,
+          "policy_steps": 75,
+          "seconds_from_policy_start": 3.7499999999997535
+        },
+        "first_bilateral_contact": {
+          "frame": 93,
+          "policy_steps": 83,
+          "seconds_from_policy_start": 4.14999999999971
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 99,
+          "policy_steps": 89,
+          "seconds_from_policy_start": 4.449999999999677
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 156,
+          "policy_steps": 146,
+          "seconds_from_policy_start": 7.299999999999363
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.009253099210183182
+      },
+      "approach_visibility": {
+        "agentview": {
+          "count": 7,
+          "minimum": 0.2109375,
+          "median": 0.23208818126148192,
+          "maximum": 0.2594371997254633
+        },
+        "robot0_eye_in_hand": {
+          "count": 7,
+          "minimum": 0.0,
+          "median": 0.0,
+          "maximum": 0.0
+        }
+      }
+    },
+    {
+      "episode_id": 2,
+      "baseline_success": true,
+      "occlusion_success": true,
+      "baseline_steps": 150,
+      "occlusion_steps": 149,
+      "baseline_events": {
+        "first_close_command": {
+          "frame": 78,
+          "policy_steps": 68,
+          "seconds_from_policy_start": 3.3999999999997916
+        },
+        "first_finger_contact": {
+          "frame": 85,
+          "policy_steps": 75,
+          "seconds_from_policy_start": 3.7499999999997535
+        },
+        "first_bilateral_contact": {
+          "frame": 88,
+          "policy_steps": 78,
+          "seconds_from_policy_start": 3.899999999999737
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 102,
+          "policy_steps": 92,
+          "seconds_from_policy_start": 4.59999999999966
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 160,
+          "policy_steps": 150,
+          "seconds_from_policy_start": 7.499999999999341
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.00613703854303429
+      },
+      "occlusion_events": {
+        "first_close_command": {
+          "frame": 74,
+          "policy_steps": 64,
+          "seconds_from_policy_start": 3.1999999999998137
+        },
+        "first_finger_contact": {
+          "frame": 81,
+          "policy_steps": 71,
+          "seconds_from_policy_start": 3.5499999999997756
+        },
+        "first_bilateral_contact": {
+          "frame": 84,
+          "policy_steps": 74,
+          "seconds_from_policy_start": 3.699999999999759
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 99,
+          "policy_steps": 89,
+          "seconds_from_policy_start": 4.449999999999677
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 159,
+          "policy_steps": 149,
+          "seconds_from_policy_start": 7.4499999999993465
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.005207053567481072
+      },
+      "approach_visibility": {
+        "agentview": {
+          "count": 7,
+          "minimum": 0.23211567732115676,
+          "median": 0.23873873873873874,
+          "maximum": 0.2728613569321534
+        },
+        "robot0_eye_in_hand": {
+          "count": 7,
+          "minimum": 0.0,
+          "median": 0.0,
+          "maximum": 0.0
+        }
+      }
+    },
+    {
+      "episode_id": 3,
+      "baseline_success": true,
+      "occlusion_success": true,
+      "baseline_steps": 140,
+      "occlusion_steps": 152,
+      "baseline_events": {
+        "first_close_command": {
+          "frame": 78,
+          "policy_steps": 68,
+          "seconds_from_policy_start": 3.3999999999997916
+        },
+        "first_finger_contact": {
+          "frame": 87,
+          "policy_steps": 77,
+          "seconds_from_policy_start": 3.8499999999997425
+        },
+        "first_bilateral_contact": {
+          "frame": 88,
+          "policy_steps": 78,
+          "seconds_from_policy_start": 3.899999999999737
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 100,
+          "policy_steps": 90,
+          "seconds_from_policy_start": 4.499999999999671
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 150,
+          "policy_steps": 140,
+          "seconds_from_policy_start": 6.999999999999396
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.0018034624216489374
+      },
+      "occlusion_events": {
+        "first_close_command": {
+          "frame": 78,
+          "policy_steps": 68,
+          "seconds_from_policy_start": 3.3999999999997916
+        },
+        "first_finger_contact": {
+          "frame": 86,
+          "policy_steps": 76,
+          "seconds_from_policy_start": 3.799999999999748
+        },
+        "first_bilateral_contact": {
+          "frame": 89,
+          "policy_steps": 79,
+          "seconds_from_policy_start": 3.9499999999997315
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 100,
+          "policy_steps": 90,
+          "seconds_from_policy_start": 4.499999999999671
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 162,
+          "policy_steps": 152,
+          "seconds_from_policy_start": 7.599999999999374
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.012272770430049323
+      },
+      "approach_visibility": {
+        "agentview": {
+          "count": 7,
+          "minimum": 0.26390605686032137,
+          "median": 0.26906112161310647,
+          "maximum": 0.299229152067274
+        },
+        "robot0_eye_in_hand": {
+          "count": 7,
+          "minimum": 0.0,
+          "median": 0.0,
+          "maximum": 0.0
+        }
+      }
+    },
+    {
+      "episode_id": 4,
+      "baseline_success": true,
+      "occlusion_success": true,
+      "baseline_steps": 134,
+      "occlusion_steps": 142,
+      "baseline_events": {
+        "first_close_command": {
+          "frame": 70,
+          "policy_steps": 60,
+          "seconds_from_policy_start": 2.9999999999998357
+        },
+        "first_finger_contact": {
+          "frame": 78,
+          "policy_steps": 68,
+          "seconds_from_policy_start": 3.3999999999997916
+        },
+        "first_bilateral_contact": {
+          "frame": 81,
+          "policy_steps": 71,
+          "seconds_from_policy_start": 3.5499999999997756
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 90,
+          "policy_steps": 80,
+          "seconds_from_policy_start": 3.999999999999726
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 144,
+          "policy_steps": 134,
+          "seconds_from_policy_start": 6.699999999999429
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.0022675304286443178
+      },
+      "occlusion_events": {
+        "first_close_command": {
+          "frame": 76,
+          "policy_steps": 66,
+          "seconds_from_policy_start": 3.2999999999998026
+        },
+        "first_finger_contact": {
+          "frame": 84,
+          "policy_steps": 74,
+          "seconds_from_policy_start": 3.699999999999759
+        },
+        "first_bilateral_contact": {
+          "frame": 86,
+          "policy_steps": 76,
+          "seconds_from_policy_start": 3.799999999999748
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 98,
+          "policy_steps": 88,
+          "seconds_from_policy_start": 4.399999999999682
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 152,
+          "policy_steps": 142,
+          "seconds_from_policy_start": 7.099999999999385
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.009600505680803992
+      },
+      "approach_visibility": {
+        "agentview": {
+          "count": 7,
+          "minimum": 0.2230971128608924,
+          "median": 0.23333333333333334,
+          "maximum": 0.2639664804469274
+        },
+        "robot0_eye_in_hand": {
+          "count": 7,
+          "minimum": 0.0,
+          "median": 0.0,
+          "maximum": 0.0
+        }
+      }
+    },
+    {
+      "episode_id": 5,
+      "baseline_success": true,
+      "occlusion_success": true,
+      "baseline_steps": 134,
+      "occlusion_steps": 143,
+      "baseline_events": {
+        "first_close_command": {
+          "frame": 66,
+          "policy_steps": 56,
+          "seconds_from_policy_start": 2.7999999999998577
+        },
+        "first_finger_contact": {
+          "frame": 73,
+          "policy_steps": 63,
+          "seconds_from_policy_start": 3.149999999999819
+        },
+        "first_bilateral_contact": {
+          "frame": 73,
+          "policy_steps": 63,
+          "seconds_from_policy_start": 3.149999999999819
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 82,
+          "policy_steps": 72,
+          "seconds_from_policy_start": 3.59999999999977
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 144,
+          "policy_steps": 134,
+          "seconds_from_policy_start": 6.699999999999429
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.013989003237151212
+      },
+      "occlusion_events": {
+        "first_close_command": {
+          "frame": 74,
+          "policy_steps": 64,
+          "seconds_from_policy_start": 3.1999999999998137
+        },
+        "first_finger_contact": {
+          "frame": 80,
+          "policy_steps": 70,
+          "seconds_from_policy_start": 3.4999999999997806
+        },
+        "first_bilateral_contact": {
+          "frame": 83,
+          "policy_steps": 73,
+          "seconds_from_policy_start": 3.6499999999997645
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 95,
+          "policy_steps": 85,
+          "seconds_from_policy_start": 4.249999999999699
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 153,
+          "policy_steps": 143,
+          "seconds_from_policy_start": 7.1499999999993795
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.026604392499964404
+      },
+      "approach_visibility": {
+        "agentview": {
+          "count": 7,
+          "minimum": 0.25783132530120484,
+          "median": 0.26354679802955666,
+          "maximum": 0.31892697466467956
+        },
+        "robot0_eye_in_hand": {
+          "count": 7,
+          "minimum": 0.0,
+          "median": 0.0,
+          "maximum": 0.0
+        }
+      }
+    },
+    {
+      "episode_id": 6,
+      "baseline_success": true,
+      "occlusion_success": true,
+      "baseline_steps": 148,
+      "occlusion_steps": 144,
+      "baseline_events": {
+        "first_close_command": {
+          "frame": 78,
+          "policy_steps": 68,
+          "seconds_from_policy_start": 3.3999999999997916
+        },
+        "first_finger_contact": {
+          "frame": 86,
+          "policy_steps": 76,
+          "seconds_from_policy_start": 3.799999999999748
+        },
+        "first_bilateral_contact": {
+          "frame": 89,
+          "policy_steps": 79,
+          "seconds_from_policy_start": 3.9499999999997315
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 100,
+          "policy_steps": 90,
+          "seconds_from_policy_start": 4.499999999999671
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 157,
+          "policy_steps": 147,
+          "seconds_from_policy_start": 7.3499999999993575
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.0060330682972001455
+      },
+      "occlusion_events": {
+        "first_close_command": {
+          "frame": 78,
+          "policy_steps": 68,
+          "seconds_from_policy_start": 3.3999999999997916
+        },
+        "first_finger_contact": {
+          "frame": 85,
+          "policy_steps": 75,
+          "seconds_from_policy_start": 3.7499999999997535
+        },
+        "first_bilateral_contact": {
+          "frame": 91,
+          "policy_steps": 81,
+          "seconds_from_policy_start": 4.049999999999721
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 100,
+          "policy_steps": 90,
+          "seconds_from_policy_start": 4.499999999999671
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 154,
+          "policy_steps": 144,
+          "seconds_from_policy_start": 7.199999999999374
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.01059848320345696
+      },
+      "approach_visibility": {
+        "agentview": {
+          "count": 7,
+          "minimum": 0.20698924731182797,
+          "median": 0.23671199011124847,
+          "maximum": 0.2613793103448276
+        },
+        "robot0_eye_in_hand": {
+          "count": 7,
+          "minimum": 0.0,
+          "median": 0.0,
+          "maximum": 0.0
+        }
+      }
+    },
+    {
+      "episode_id": 7,
+      "baseline_success": true,
+      "occlusion_success": true,
+      "baseline_steps": 149,
+      "occlusion_steps": 152,
+      "baseline_events": {
+        "first_close_command": {
+          "frame": 74,
+          "policy_steps": 64,
+          "seconds_from_policy_start": 3.1999999999998137
+        },
+        "first_finger_contact": {
+          "frame": 79,
+          "policy_steps": 69,
+          "seconds_from_policy_start": 3.449999999999786
+        },
+        "first_bilateral_contact": {
+          "frame": 82,
+          "policy_steps": 72,
+          "seconds_from_policy_start": 3.59999999999977
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 94,
+          "policy_steps": 84,
+          "seconds_from_policy_start": 4.199999999999704
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 159,
+          "policy_steps": 149,
+          "seconds_from_policy_start": 7.4499999999993465
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.0031223081430322083
+      },
+      "occlusion_events": {
+        "first_close_command": {
+          "frame": 77,
+          "policy_steps": 67,
+          "seconds_from_policy_start": 3.349999999999797
+        },
+        "first_finger_contact": {
+          "frame": 82,
+          "policy_steps": 72,
+          "seconds_from_policy_start": 3.59999999999977
+        },
+        "first_bilateral_contact": {
+          "frame": 87,
+          "policy_steps": 77,
+          "seconds_from_policy_start": 3.8499999999997425
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 100,
+          "policy_steps": 90,
+          "seconds_from_policy_start": 4.499999999999671
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 162,
+          "policy_steps": 152,
+          "seconds_from_policy_start": 7.599999999999374
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.005133364114431727
+      },
+      "approach_visibility": {
+        "agentview": {
+          "count": 7,
+          "minimum": 0.2576312576312576,
+          "median": 0.2634207240948814,
+          "maximum": 0.3180105501130369
+        },
+        "robot0_eye_in_hand": {
+          "count": 7,
+          "minimum": 0.0,
+          "median": 0.0,
+          "maximum": 0.0
+        }
+      }
+    },
+    {
+      "episode_id": 8,
+      "baseline_success": true,
+      "occlusion_success": true,
+      "baseline_steps": 144,
+      "occlusion_steps": 140,
+      "baseline_events": {
+        "first_close_command": {
+          "frame": 73,
+          "policy_steps": 63,
+          "seconds_from_policy_start": 3.149999999999819
+        },
+        "first_finger_contact": {
+          "frame": 82,
+          "policy_steps": 72,
+          "seconds_from_policy_start": 3.59999999999977
+        },
+        "first_bilateral_contact": {
+          "frame": 84,
+          "policy_steps": 74,
+          "seconds_from_policy_start": 3.699999999999759
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 93,
+          "policy_steps": 83,
+          "seconds_from_policy_start": 4.14999999999971
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 154,
+          "policy_steps": 144,
+          "seconds_from_policy_start": 7.199999999999374
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.0012257500502904062
+      },
+      "occlusion_events": {
+        "first_close_command": {
+          "frame": 77,
+          "policy_steps": 67,
+          "seconds_from_policy_start": 3.349999999999797
+        },
+        "first_finger_contact": {
+          "frame": 84,
+          "policy_steps": 74,
+          "seconds_from_policy_start": 3.699999999999759
+        },
+        "first_bilateral_contact": {
+          "frame": 91,
+          "policy_steps": 81,
+          "seconds_from_policy_start": 4.049999999999721
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 99,
+          "policy_steps": 89,
+          "seconds_from_policy_start": 4.449999999999677
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 150,
+          "policy_steps": 140,
+          "seconds_from_policy_start": 6.999999999999396
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.010542599792035798
+      },
+      "approach_visibility": {
+        "agentview": {
+          "count": 7,
+          "minimum": 0.25728155339805825,
+          "median": 0.2625386996904025,
+          "maximum": 0.30092264017033354
+        },
+        "robot0_eye_in_hand": {
+          "count": 7,
+          "minimum": 0.0,
+          "median": 0.0,
+          "maximum": 0.0
+        }
+      }
+    },
+    {
+      "episode_id": 9,
+      "baseline_success": true,
+      "occlusion_success": true,
+      "baseline_steps": 148,
+      "occlusion_steps": 142,
+      "baseline_events": {
+        "first_close_command": {
+          "frame": 78,
+          "policy_steps": 68,
+          "seconds_from_policy_start": 3.3999999999997916
+        },
+        "first_finger_contact": {
+          "frame": 86,
+          "policy_steps": 76,
+          "seconds_from_policy_start": 3.799999999999748
+        },
+        "first_bilateral_contact": {
+          "frame": 90,
+          "policy_steps": 80,
+          "seconds_from_policy_start": 3.999999999999726
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 99,
+          "policy_steps": 89,
+          "seconds_from_policy_start": 4.449999999999677
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 158,
+          "policy_steps": 148,
+          "seconds_from_policy_start": 7.399999999999352
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.006124119736923815
+      },
+      "occlusion_events": {
+        "first_close_command": {
+          "frame": 77,
+          "policy_steps": 67,
+          "seconds_from_policy_start": 3.349999999999797
+        },
+        "first_finger_contact": {
+          "frame": 83,
+          "policy_steps": 73,
+          "seconds_from_policy_start": 3.6499999999997645
+        },
+        "first_bilateral_contact": {
+          "frame": 88,
+          "policy_steps": 78,
+          "seconds_from_policy_start": 3.899999999999737
+        },
+        "first_lift_at_least_20mm": {
+          "frame": 99,
+          "policy_steps": 89,
+          "seconds_from_policy_start": 4.449999999999677
+        },
+        "first_total_finger_contact_loss_before_plate": null,
+        "first_plate_contact": {
+          "frame": 152,
+          "policy_steps": 142,
+          "seconds_from_policy_start": 7.099999999999385
+        },
+        "lift_threshold_m": 0.02,
+        "max_mug_origin_drift_in_eef_frame_before_release_m": 0.012153380651435642
+      },
+      "approach_visibility": {
+        "agentview": {
+          "count": 7,
+          "minimum": 0.26463104325699743,
+          "median": 0.2713633398564905,
+          "maximum": 0.3182861514919663
+        },
+        "robot0_eye_in_hand": {
+          "count": 7,
+          "minimum": 0.0,
+          "median": 0.0,
+          "maximum": 0.0
+        }
+      }
+    }
+  ],
+  "observations": 71,
+  "agentview": {
+    "count": 71,
+    "minimum": 0.20698924731182797,
+    "median": 0.25783132530120484,
+    "maximum": 0.31892697466467956
+  },
+  "robot0_eye_in_hand": {
+    "count": 71,
+    "minimum": 0.0,
+    "median": 0.0,
+    "maximum": 0.0
+  }
+}

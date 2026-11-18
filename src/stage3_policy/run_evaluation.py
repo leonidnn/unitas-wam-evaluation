@@ -33,6 +33,8 @@ def main():
     parser.add_argument('--condition', choices=['baseline', 'dim_light', 'stress'], required=True)
     parser.add_argument('--light-scale', type=float, default=None)
     parser.add_argument('--task-id', type=int, default=None)
+    parser.add_argument('--mug-occlusion', action='store_true')
+    parser.add_argument('--mug-friction-scale', type=float, default=1)
     parser.add_argument('--push-force-n', type=float, default=0)
     parser.add_argument('--push-start-step', type=int, default=60)
     parser.add_argument('--push-duration-steps', type=int, default=3)
@@ -55,6 +57,15 @@ def main():
         parser.error('Use --condition stress for an external push')
     if args.condition != 'stress' and light_scale != (1.0 if args.condition == 'baseline' else 0.5):
         parser.error('Use --condition stress for a custom light scale')
+    if not 0 < args.mug_friction_scale <= 1:
+        parser.error('--mug-friction-scale must be in (0, 1]')
+    if args.mug_friction_scale != 1 and (
+            args.condition != 'stress' or args.push_force_n or light_scale != 1):
+        parser.error('Reduced friction requires a separate stress series at normal light')
+    if args.mug_occlusion and (
+            args.condition != 'stress' or args.push_force_n
+            or args.mug_friction_scale != 1 or light_scale != 1):
+        parser.error('Occlusion requires a separate stress series at normal light')
     root, output = args.root.resolve(), args.output_dir.resolve()
     if args.episodes <= 0 or args.episode_start < 0:
         parser.error('Invalid episode range')
@@ -69,6 +80,8 @@ def main():
            'PYOPENGL_PLATFORM': 'egl', 'MPLBACKEND': 'Agg', 'OMP_NUM_THREADS': '1',
            'OPENBLAS_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1',
            'UNITAS_LIGHT_SCALE': str(light_scale),
+           'UNITAS_MUG_OCCLUSION': str(int(args.mug_occlusion)),
+           'UNITAS_MUG_FRICTION_SCALE': str(args.mug_friction_scale),
            'UNITAS_PUSH_FORCE_N': str(args.push_force_n),
            'UNITAS_PUSH_START_STEP': str(args.push_start_step),
            'UNITAS_PUSH_DURATION_STEPS': str(args.push_duration_steps),
@@ -93,7 +106,9 @@ def main():
                       '--max-steps', '800', '--no-save-videos', '--output-dir', str(output)]
     metadata = {'started_utc': datetime.now(timezone.utc).isoformat(), 'status': 'running',
                 'condition': args.condition, 'light_scale': float(env['UNITAS_LIGHT_SCALE']),
-                'task_id': task_id, 'server_command': server_command, 'client_command': client_command,
+                'task_id': task_id, 'mug_occlusion': args.mug_occlusion,
+                'mug_friction_scale': args.mug_friction_scale,
+                'server_command': server_command, 'client_command': client_command,
                 'script_sha256': {p.name: sha256(p) for p in scripts.glob('*.py')},
                 'upstream_revision': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root, text=True).strip()}
     manifest = output / 'run.json'

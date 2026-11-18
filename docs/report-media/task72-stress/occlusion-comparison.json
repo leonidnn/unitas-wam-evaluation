@@ -1,0 +1,498 @@
+{
+  "complete": true,
+  "baseline": {
+    "directory": "outputs\\stage3\\baseline",
+    "expected_episodes": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "completed_episodes": 10,
+    "missing_episode_ids": [],
+    "successes": 10,
+    "success_rate": 1.0,
+    "client_roundtrip": {
+      "successful_calls": 148,
+      "failed_calls": 0,
+      "mean_seconds": 1.6976026795134826,
+      "median_seconds": 1.50452759399991,
+      "min_seconds": 1.4435075209999013,
+      "max_seconds": 3.439434474000109
+    },
+    "server_policy_act": {
+      "successful_calls": 148,
+      "failed_calls": 0,
+      "mean_seconds": 1.657382900074295,
+      "median_seconds": 1.4697158109997872,
+      "min_seconds": 1.4107573960000082,
+      "max_seconds": 3.4063214880000032
+    },
+    "episodes": [
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 0,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 158,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.00430275693488286,
+        "protocol_id": "4f9abb535ba07874ad5d953ab1ee1d3042695050bac206d9885694dde07b5360"
+      },
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 1,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 143,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.004121720740216318,
+        "protocol_id": "4f9abb535ba07874ad5d953ab1ee1d3042695050bac206d9885694dde07b5360"
+      },
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 2,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 150,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.009281340841490158,
+        "protocol_id": "4f9abb535ba07874ad5d953ab1ee1d3042695050bac206d9885694dde07b5360"
+      },
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 3,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 140,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.005321639830949358,
+        "protocol_id": "4f9abb535ba07874ad5d953ab1ee1d3042695050bac206d9885694dde07b5360"
+      },
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 4,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 134,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.008560220344269235,
+        "protocol_id": "4f9abb535ba07874ad5d953ab1ee1d3042695050bac206d9885694dde07b5360"
+      },
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 5,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 134,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.002065085313605216,
+        "protocol_id": "4f9abb535ba07874ad5d953ab1ee1d3042695050bac206d9885694dde07b5360"
+      },
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 6,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 148,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.0072482843349306846,
+        "protocol_id": "4f9abb535ba07874ad5d953ab1ee1d3042695050bac206d9885694dde07b5360"
+      },
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 7,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 149,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.005783755137886968,
+        "protocol_id": "4f9abb535ba07874ad5d953ab1ee1d3042695050bac206d9885694dde07b5360"
+      },
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 8,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 144,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.0023042774633088635,
+        "protocol_id": "4f9abb535ba07874ad5d953ab1ee1d3042695050bac206d9885694dde07b5360"
+      },
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 9,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 148,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.00428369645983331,
+        "protocol_id": "4f9abb535ba07874ad5d953ab1ee1d3042695050bac206d9885694dde07b5360"
+      }
+    ]
+  },
+  "changed": {
+    "directory": "outputs\\stage3\\stress\\task72-failure-modes\\occlusion-incremental",
+    "expected_episodes": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "completed_episodes": 10,
+    "missing_episode_ids": [],
+    "successes": 10,
+    "success_rate": 1.0,
+    "client_roundtrip": {
+      "successful_calls": 152,
+      "failed_calls": 0,
+      "mean_seconds": 1.7136986626315747,
+      "median_seconds": 1.550377587499952,
+      "min_seconds": 1.4746274159999757,
+      "max_seconds": 3.860683711999968
+    },
+    "server_policy_act": {
+      "successful_calls": 152,
+      "failed_calls": 0,
+      "mean_seconds": 1.6729769711842146,
+      "median_seconds": 1.5127172065000423,
+      "min_seconds": 1.439000989999954,
+      "max_seconds": 3.8164532389999977
+    },
+    "episodes": [
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 0,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 153,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.004302756714542334,
+        "protocol_id": "a64754e0e223fe5e2373c02b68d3a20bbc1eb109f97cb12e18e3596aebb3e4cb"
+      },
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 1,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 147,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.0041217206522468006,
+        "protocol_id": "a64754e0e223fe5e2373c02b68d3a20bbc1eb109f97cb12e18e3596aebb3e4cb"
+      },
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 2,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 149,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.009281340384572609,
+        "protocol_id": "a64754e0e223fe5e2373c02b68d3a20bbc1eb109f97cb12e18e3596aebb3e4cb"
+      },
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 3,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 152,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.005321639821322711,
+        "protocol_id": "a64754e0e223fe5e2373c02b68d3a20bbc1eb109f97cb12e18e3596aebb3e4cb"
+      },
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 4,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 142,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.008560220053366692,
+        "protocol_id": "a64754e0e223fe5e2373c02b68d3a20bbc1eb109f97cb12e18e3596aebb3e4cb"
+      },
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 5,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 143,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.002065085103832054,
+        "protocol_id": "a64754e0e223fe5e2373c02b68d3a20bbc1eb109f97cb12e18e3596aebb3e4cb"
+      },
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 6,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 144,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.007248284178853809,
+        "protocol_id": "a64754e0e223fe5e2373c02b68d3a20bbc1eb109f97cb12e18e3596aebb3e4cb"
+      },
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 7,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 152,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.005783755007303168,
+        "protocol_id": "a64754e0e223fe5e2373c02b68d3a20bbc1eb109f97cb12e18e3596aebb3e4cb"
+      },
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 8,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 140,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.0023042772683638103,
+        "protocol_id": "a64754e0e223fe5e2373c02b68d3a20bbc1eb109f97cb12e18e3596aebb3e4cb"
+      },
+      {
+        "suite": "libero_90",
+        "task_id": 72,
+        "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+        "episode_id": 9,
+        "instruction": "put the white mug on the plate",
+        "success": true,
+        "steps": 142,
+        "max_steps": 800,
+        "settle_steps": 10,
+        "settle_controller_mode": "delta_then_absolute",
+        "settle_eef_displacement_m": 0.004283696364400629,
+        "protocol_id": "a64754e0e223fe5e2373c02b68d3a20bbc1eb109f97cb12e18e3596aebb3e4cb"
+      }
+    ]
+  },
+  "condition_protocols": [
+    {
+      "benchmark": "LIBERO",
+      "suite": "libero_90",
+      "server": {
+        "checkpoint": "unitas_libero_finetuned.pt",
+        "checkpoint_sha256": "a60972420b4049128170592af9953e6ee7fa591a7cfdf6d26560a23371d7b299",
+        "source_sha256": "2e876e05ea92d2752484ef8698a6f621727c3b22ce7e8bd6ad2e17cf88452660",
+        "denoise_steps": 10,
+        "execute_steps": 10,
+        "sampling_seed": 160484,
+        "sampling_mode": "episode_cpu",
+        "florence_dtype": "fp32",
+        "florence_attention": "sdpa",
+        "state_conditioning": "zero_vector",
+        "context_conditioning": "zero_vector",
+        "temporal_spec": {
+          "prediction_horizon": 20,
+          "history_horizon": 20,
+          "gripper_flow_fps": 20.0,
+          "scene_flow_horizon": 20,
+          "scene_flow_fps": 20.0
+        }
+      },
+      "client_source_sha256": "9218a9f61e216346dc2c7cdc112c487d6fb4db9ac7483463bf27775955c7f928",
+      "seed": 42,
+      "max_steps": 800,
+      "settle_steps": 10,
+      "control": "delta_then_absolute",
+      "cameras": [
+        "agentview",
+        "robot0_eye_in_hand"
+      ],
+      "resolution": [
+        256,
+        256
+      ],
+      "scene_condition": {
+        "light_scale": 1.0
+      },
+      "recording_wrapper_sha256": "b0a3e1d9b0358274c25b3b205fefd560936f033577852f631c0821d53dcda596"
+    },
+    {
+      "benchmark": "LIBERO",
+      "suite": "libero_90",
+      "server": {
+        "checkpoint": "unitas_libero_finetuned.pt",
+        "checkpoint_sha256": "a60972420b4049128170592af9953e6ee7fa591a7cfdf6d26560a23371d7b299",
+        "source_sha256": "2e876e05ea92d2752484ef8698a6f621727c3b22ce7e8bd6ad2e17cf88452660",
+        "denoise_steps": 10,
+        "execute_steps": 10,
+        "sampling_seed": 160484,
+        "sampling_mode": "episode_cpu",
+        "florence_dtype": "fp32",
+        "florence_attention": "sdpa",
+        "state_conditioning": "zero_vector",
+        "context_conditioning": "zero_vector",
+        "temporal_spec": {
+          "prediction_horizon": 20,
+          "history_horizon": 20,
+          "gripper_flow_fps": 20.0,
+          "scene_flow_horizon": 20,
+          "scene_flow_fps": 20.0
+        }
+      },
+      "client_source_sha256": "9218a9f61e216346dc2c7cdc112c487d6fb4db9ac7483463bf27775955c7f928",
+      "seed": 42,
+      "max_steps": 800,
+      "settle_steps": 10,
+      "control": "delta_then_absolute",
+      "cameras": [
+        "agentview",
+        "robot0_eye_in_hand"
+      ],
+      "resolution": [
+        256,
+        256
+      ],
+      "scene_condition": {
+        "light_scale": 1.0,
+        "mug_occlusion": true
+      },
+      "recording_wrapper_sha256": "ececd9bac0f37a092901f1ff5cbc81358d1fcded30f4d3eb44a38fa32e72c689"
+    }
+  ],
+  "paired": [
+    {
+      "episode_id": 0,
+      "baseline": true,
+      "changed": true
+    },
+    {
+      "episode_id": 1,
+      "baseline": true,
+      "changed": true
+    },
+    {
+      "episode_id": 2,
+      "baseline": true,
+      "changed": true
+    },
+    {
+      "episode_id": 3,
+      "baseline": true,
+      "changed": true
+    },
+    {
+      "episode_id": 4,
+      "baseline": true,
+      "changed": true
+    },
+    {
+      "episode_id": 5,
+      "baseline": true,
+      "changed": true
+    },
+    {
+      "episode_id": 6,
+      "baseline": true,
+      "changed": true
+    },
+    {
+      "episode_id": 7,
+      "baseline": true,
+      "changed": true
+    },
+    {
+      "episode_id": 8,
+      "baseline": true,
+      "changed": true
+    },
+    {
+      "episode_id": 9,
+      "baseline": true,
+      "changed": true
+    }
+  ],
+  "losses": 0,
+  "gains": 0,
+  "exact_paired_mcnemar_p": 1.0,
+  "scope": "One task, fixed initial-state list. Timings are descriptive; calls are correlated within episodes."
+}
