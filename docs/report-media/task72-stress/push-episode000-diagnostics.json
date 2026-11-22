@@ -1,0 +1,59 @@
+{
+  "source": "outputs\\stage3\\stress\\task072-push040\\libero_90_task72_episode000_replay",
+  "result": {
+    "suite": "libero_90",
+    "task_id": 72,
+    "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate",
+    "episode_id": 0,
+    "instruction": "put the white mug on the plate",
+    "success": false,
+    "steps": 800,
+    "max_steps": 800,
+    "settle_steps": 10,
+    "settle_controller_mode": "delta_then_absolute",
+    "settle_eef_displacement_m": 0.00430275693488286,
+    "protocol_id": "2ff3ff742ac072a4d061255fb0cd78fe7fe09d079621760aa0a0aa1c79c7c64d"
+  },
+  "inspector_sha256": "84c61ce2d45d53fdd26fb5ff70b3544820cec257bd0480b700290dc26af97ef3",
+  "body_names": [
+    "gripper0_right_gripper",
+    "gripper0_eef",
+    "gripper0_leftfinger",
+    "gripper0_finger_joint1_tip",
+    "gripper0_rightfinger",
+    "gripper0_finger_joint2_tip",
+    "porcelain_mug_1_main",
+    "red_coffee_mug_1_main",
+    "plate_1_main",
+    "chocolate_pudding_1_main"
+  ],
+  "contact_columns": [
+    "mug_plate",
+    "mug_gripper",
+    "gripper_other"
+  ],
+  "frames": 811,
+  "scope": "State-derived observations, no causal attribution",
+  "mug_body": "porcelain_mug_1_main",
+  "plate_body": "plate_1_main",
+  "mug_lift_max_m": 0.044148741906386346,
+  "minimum_xy_distance_m": 0.18781437218123312,
+  "final_xy_distance_m": 0.1911524284554148,
+  "final_mug_minus_plate_z_m": 0.038200296589397276,
+  "mug_plate": {
+    "frames": 0,
+    "first_time_s": null,
+    "last_time_s": null
+  },
+  "mug_gripper": {
+    "frames": 141,
+    "first_time_s": 3.599999999999825,
+    "last_time_s": 40.40000000000341
+  },
+  "gripper_other": {
+    "frames": 94,
+    "first_time_s": 5.349999999999633,
+    "last_time_s": 15.350000000001796
+  },
+  "articulated_joint_names": []
+}

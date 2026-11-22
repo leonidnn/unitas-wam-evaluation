@@ -1,0 +1,8 @@
+{
+  "returncode": 0,
+  "duration_s": 203.07519705599998,
+  "input_sha256": "6b865e89f5d9fdd8c75ca74d18f6210c42f73e143ae7aa0823c3b26931f59f3a",
+  "output_exists": true,
+  "output_size": 6930510,
+  "output_sha256": "15518597a1136fb351a32f44c8114e1bac5957eeaf17dea17ee4e746ee91112e"
+}

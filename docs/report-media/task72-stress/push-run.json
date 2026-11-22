@@ -1,0 +1,26 @@
+{
+  "started_utc": "2026-11-16T12:59:08.324753+00:00",
+  "status": "completed",
+  "condition": "stress",
+  "light_scale": 1.0,
+  "task_id": 72,
+  "script_sha256": {
+    "summarize_runs.py": "36f984af6a2075afd450b438f2f400c49bdf196876b26373c528cb1f42a5d247",
+    "calibrate_push.py": "22fe502ea3a5780f5a9f3e7f65fa10d22aedff0e6bade6616f24843c1c165797",
+    "replay_libero.py": "7b67ee87b59fb247df77f36446154dac930a9eae460e4e147801f3d08f7eea51",
+    "run_evaluation.py": "09250456d71bf3e523664d3b3e7a705ff5f43248032d0a64b5c3607d12ecbd86",
+    "compare_checkpoints.py": "3163a99369a2d1d87675e09dda8a6a8095d7de403097d61e5c49539e9dc8dda6",
+    "record_libero.py": "c7980ebc5216dc596825f1f17c6f85266f718d60cfa7e64b90eefb85f4c13dbe",
+    "check_terminal_stability.py": "76b680c61ab0eda65bd6dede6d4b54c5ae1146192583e865329764af87b77874",
+    "render_replay.py": "3de0a9b0e6a1b8a8e0e2d1e3321ceb3d4efdf5618346387981a96cd1b7d49165",
+    "serve_timed.py": "087fdee5749fcfa5021cc84bceaa6b966a010db1465bd139b5876d8dfa35ece9",
+    "plot_results.py": "69c8ba9e99d7af8591ea2194bbd41be74ffcb64f7a566e07b872db7c022e705e",
+    "interventions.py": "66d87b02c25c47bf0c270ef5698ade907f48870d3abd41c89d47f1a58fa6a0dc",
+    "inspect_episode.py": "84c61ce2d45d53fdd26fb5ff70b3544820cec257bd0480b700290dc26af97ef3",
+    "replay_data.py": "c1e7a3b2745c9af1df7f2b2b3bf68b67e7723b69f3a4cc200aef8d41616c0b3d",
+    "check_simulator.py": "a35d1889fa85dfc7919e2b624465e5e8ef911a6c518a7b07bf01a569445b20b4"
+  },
+  "upstream_revision": "c92ee809abd2862a911c61d4b19389308f7eb57e",
+  "client_exit_code": 0,
+  "ended_utc": "2026-11-16T13:19:58.853805+00:00"
+}

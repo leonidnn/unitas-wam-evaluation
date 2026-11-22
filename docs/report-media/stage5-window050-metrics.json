@@ -1,0 +1,224 @@
+{
+  "motion_threshold_m": 0.01,
+  "motion_rule": "maximum valid displacement from t0 over the fixed horizon > threshold",
+  "ade_weighting": "equal weight per valid point-time, excluding t0",
+  "fde_rule": "valid corresponding points at final time only",
+  "groups": {
+    "all_correspondences": {
+      "all": {
+        "selected_points": 1161,
+        "unitas": {
+          "ade_m": 0.0011776159517467022,
+          "fde_m": 0.003078758018091321,
+          "valid_point_times": 23220,
+          "final_points": 1161,
+          "points_with_any_valid_future": 1161
+        },
+        "stationary": {
+          "ade_m": 0.0009586492087692022,
+          "fde_m": 0.004732000641524792,
+          "valid_point_times": 23220,
+          "final_points": 1161,
+          "points_with_any_valid_future": 1161
+        }
+      },
+      "moving": {
+        "selected_points": 128,
+        "unitas": {
+          "ade_m": 0.005753850098699331,
+          "fde_m": 0.02159270830452442,
+          "valid_point_times": 2560,
+          "final_points": 128,
+          "points_with_any_valid_future": 128
+        },
+        "stationary": {
+          "ade_m": 0.008695247583091259,
+          "fde_m": 0.04292071610689163,
+          "valid_point_times": 2560,
+          "final_points": 128,
+          "points_with_any_valid_future": 128
+        }
+      },
+      "static": {
+        "selected_points": 1033,
+        "unitas": {
+          "ade_m": 0.0006105705397203565,
+          "fde_m": 0.000784677395131439,
+          "valid_point_times": 20660,
+          "final_points": 1033,
+          "points_with_any_valid_future": 1033
+        },
+        "stationary": {
+          "ade_m": 0.0,
+          "fde_m": 0.0,
+          "valid_point_times": 20660,
+          "final_points": 1033,
+          "points_with_any_valid_future": 1033
+        }
+      }
+    },
+    "visible": {
+      "all": {
+        "selected_points": 1161,
+        "unitas": {
+          "ade_m": 0.0011715646833181381,
+          "fde_m": 0.003369186772033572,
+          "valid_point_times": 22045,
+          "final_points": 980,
+          "points_with_any_valid_future": 1156
+        },
+        "stationary": {
+          "ade_m": 0.00096653908258304,
+          "fde_m": 0.0052993944846093655,
+          "valid_point_times": 22045,
+          "final_points": 980,
+          "points_with_any_valid_future": 1156
+        }
+      },
+      "moving": {
+        "selected_points": 128,
+        "unitas": {
+          "ade_m": 0.005749729927629232,
+          "fde_m": 0.02217700518667698,
+          "valid_point_times": 2463,
+          "final_points": 121,
+          "points_with_any_valid_future": 128
+        },
+        "stationary": {
+          "ade_m": 0.008650975301861763,
+          "fde_m": 0.04292071610689163,
+          "valid_point_times": 2463,
+          "final_points": 121,
+          "points_with_any_valid_future": 128
+        }
+      },
+      "static": {
+        "selected_points": 1033,
+        "unitas": {
+          "ade_m": 0.0005957286921329796,
+          "fde_m": 0.0007198897073976696,
+          "valid_point_times": 19582,
+          "final_points": 859,
+          "points_with_any_valid_future": 1028
+        },
+        "stationary": {
+          "ade_m": 0.0,
+          "fde_m": 0.0,
+          "valid_point_times": 19582,
+          "final_points": 859,
+          "points_with_any_valid_future": 1028
+        }
+      }
+    }
+  },
+  "rigidity": {
+    "unitas": {
+      "0": {
+        "points": 128,
+        "mean_rigid_fit_rms_m": 0.00014511138436168916,
+        "max_rigid_fit_rms_m": 0.0004214274003014048
+      },
+      "1": {
+        "points": 128,
+        "mean_rigid_fit_rms_m": 0.00014882134421578493,
+        "max_rigid_fit_rms_m": 0.00042058071485567155
+      },
+      "21": {
+        "points": 9,
+        "mean_rigid_fit_rms_m": 0.0001375025059637994,
+        "max_rigid_fit_rms_m": 0.0004348121763114525
+      },
+      "22": {
+        "points": 128,
+        "mean_rigid_fit_rms_m": 0.0001849661692814205,
+        "max_rigid_fit_rms_m": 0.0003911627953393866
+      },
+      "23": {
+        "points": 128,
+        "mean_rigid_fit_rms_m": 0.0001437622351668789,
+        "max_rigid_fit_rms_m": 0.0004210678128895258
+      },
+      "24": {
+        "points": 128,
+        "mean_rigid_fit_rms_m": 0.00014026574374452927,
+        "max_rigid_fit_rms_m": 0.0003839961668087451
+      },
+      "26": {
+        "points": 128,
+        "mean_rigid_fit_rms_m": 0.0019151633035398737,
+        "max_rigid_fit_rms_m": 0.00574220456581692
+      },
+      "27": {
+        "points": 128,
+        "mean_rigid_fit_rms_m": 0.0023786376873498943,
+        "max_rigid_fit_rms_m": 0.006904687882033788
+      },
+      "28": {
+        "points": 128,
+        "mean_rigid_fit_rms_m": 0.0007097769737241616,
+        "max_rigid_fit_rms_m": 0.002109607809134882
+      },
+      "29": {
+        "points": 128,
+        "mean_rigid_fit_rms_m": 0.00014515505174199483,
+        "max_rigid_fit_rms_m": 0.00043037796213717333
+      }
+    },
+    "reference": {
+      "0": {
+        "points": 128,
+        "mean_rigid_fit_rms_m": 1.4281687662798647e-08,
+        "max_rigid_fit_rms_m": 1.4281687662798647e-08
+      },
+      "1": {
+        "points": 128,
+        "mean_rigid_fit_rms_m": 8.980872191581255e-09,
+        "max_rigid_fit_rms_m": 8.980872191581255e-09
+      },
+      "21": {
+        "points": 9,
+        "mean_rigid_fit_rms_m": 8.537245552988715e-10,
+        "max_rigid_fit_rms_m": 8.537245552988714e-10
+      },
+      "22": {
+        "points": 128,
+        "mean_rigid_fit_rms_m": 1.0591856156501796e-08,
+        "max_rigid_fit_rms_m": 1.0591856156501795e-08
+      },
+      "23": {
+        "points": 128,
+        "mean_rigid_fit_rms_m": 1.1211555847619907e-09,
+        "max_rigid_fit_rms_m": 1.121155584761991e-09
+      },
+      "24": {
+        "points": 128,
+        "mean_rigid_fit_rms_m": 2.2008627091764384e-09,
+        "max_rigid_fit_rms_m": 2.2008627091764384e-09
+      },
+      "26": {
+        "points": 128,
+        "mean_rigid_fit_rms_m": 3.6443923068104133e-09,
+        "max_rigid_fit_rms_m": 3.644392306810413e-09
+      },
+      "27": {
+        "points": 128,
+        "mean_rigid_fit_rms_m": 2.8106828830952003e-08,
+        "max_rigid_fit_rms_m": 5.248853132259237e-08
+      },
+      "28": {
+        "points": 128,
+        "mean_rigid_fit_rms_m": 1.1811646178912614e-09,
+        "max_rigid_fit_rms_m": 1.1811646178912618e-09
+      },
+      "29": {
+        "points": 128,
+        "mean_rigid_fit_rms_m": 1.570647610738358e-09,
+        "max_rigid_fit_rms_m": 1.5706476107383578e-09
+      }
+    }
+  },
+  "sources": {
+    "/content/UNITAS/outputs/stage5/window050/scene_flow.npz": "7d080d927b1659fe2fa62babb27904893dd85042990ad6ca3b003abe1a18447e",
+    "/content/UNITAS/outputs/stage5/window050-execution/reference.npz": "1c33e3348c87373835d55ac421813c2059bac58f0c75bb464b6af841b444684c"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "hashes_match": true,
+  "mask_counts_and_partition_match": true,
+  "uniform_indices_match": true,
+  "four_pngs_valid": {
+    "cam0-alignment.png": [
+      2160,
+      720
+    ],
+    "cam0-trajectories.png": [
+      2160,
+      846
+    ],
+    "cam1-alignment.png": [
+      2160,
+      720
+    ],
+    "cam1-trajectories.png": [
+      2160,
+      846
+    ]
+  },
+  "local_markdown_links_resolve": true,
+  "checked_markdown": [
+    "docs\\local\\stage1-report.md",
+    "docs\\local\\stage2-report.md",
+    "docs\\local\\stage3-report.md",
+    "docs\\local\\requirements-audit.md",
+    "src\\stage2_transfer\\README.md"
+  ],
+  "new_model_inference": false,
+  "ade_fde_computed": false
+}
